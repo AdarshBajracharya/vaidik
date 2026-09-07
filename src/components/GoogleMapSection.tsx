@@ -4,7 +4,7 @@ import { MapPin, Navigation, Compass, ExternalLink } from 'lucide-react';
 
 export const GoogleMapSection: React.FC = () => {
   // Google Maps search query URL directly targeting Gothatar, Kathmandu, Nepal
-  const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=Vaidik+Vidyapeeth+Gothatar+Kathmandu+Nepal`;
+  const googleMapsUrl = `https://www.google.com/maps/place/Vaidik+Vidyapeeth,+a+progressive+School/@27.7083907,85.3728762,17z/data=!3m1!4b1!4m6!3m5!1s0x39eb199249f3fd0d:0xdac19c0ce595cbdb!8m2!3d27.7083907!4d85.3728762!16s%2Fg%2F11qsrhtzwn?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D`;
 
   return (
     <div className="bg-slate-50 border border-slate-200 rounded-md overflow-hidden" id="school-location-map">
@@ -47,7 +47,7 @@ export const GoogleMapSection: React.FC = () => {
           loading="lazy"
           allowFullScreen
           referrerPolicy="no-referrer-when-downgrade"
-          src="https://maps.google.com/maps?q=Gothatar%2C%20Kathmandu%2C%20Nepal&t=&z=15&ie=UTF8&iwloc=&output=embed"
+          src="https://www.google.com/maps/place/Vaidik+Vidyapeeth,+a+progressive+School/@27.7083907,85.3728762,17z/data=!3m1!4b1!4m6!3m5!1s0x39eb199249f3fd0d:0xdac19c0ce595cbdb!8m2!3d27.7083907!4d85.3728762!16s%2Fg%2F11qsrhtzwn?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
           className="w-full h-full grayscale-[15%] contrast-[105%]"
         />
 
