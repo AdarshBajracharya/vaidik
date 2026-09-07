@@ -1,4 +1,4 @@
-mgimport React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PageId, EventItem, GalleryPhoto } from './types';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
