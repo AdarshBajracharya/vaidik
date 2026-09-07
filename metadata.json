@@ -1,0 +1,8 @@
+{
+  "name": "Vaidik Vidyapeeth",
+  "description": "Official website of Vaidik Vidyapeeth, a premier school in Gothatar, Kathmandu, Nepal focused on academic excellence, holistic development, and character building.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

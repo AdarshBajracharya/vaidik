@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cinzel", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --color-vaidik-blue: #164287;
+  --color-vaidik-blue-dark: #0f2e60;
+  --color-vaidik-blue-light: #2259af;
+  --color-vaidik-red: #d91f26;
+  --color-vaidik-red-dark: #b3161c;
+  --color-vaidik-navy: #0b1a30;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: #1e293b;
+  background-color: #ffffff;
+}
+
+.font-serif-heading {
+  font-family: var(--font-serif);
+}
+
