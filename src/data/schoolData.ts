@@ -34,6 +34,19 @@ export const PRINCIPAL_INFO = {
   shortQuote:
     'At Vaidik Vidyapeeth, we believe that education extends far beyond textbooks and examinations. Our responsibility is to help students develop curiosity, confidence, discipline and compassion while providing them with a strong academic foundation. Through the partnership of teachers, students and parents, we aim to create an environment where every learner feels supported and inspired to succeed.',
   fullMessage: [
+    'Education stands as the cornerstone of a progressive and enlightened society. We are committed to providing a holistic educational experience that fosters intellectual excellence, moral integrity, and a strong sense of social responsibility among our students. As Aristotle profoundly stated, "Educating the mind without educating the heart is no education at all." Guided by this philosophy, our school emphasizes not only academic rigor but also the development of values, discipline, and character. We believe that true education inspires inquiry and lifelong learning.In other words, Education is the kindling of a flame, not the filling of a vessel.Our dedicated faculty strive to nurture curiosity, critical thinking, and creativity, empowering students to become independent learners and thoughtful citizens.We encourage perseverance, resilience, and continuous self - improvement in all endeavours. It is our unwavering mission to prepare students to meet future challenges with confidence, competence, and ethical grounding.I extend a warm invitation to parents and stakeholders to join us in this noble pursuit of excellence in education.'
+  ],
+};
+
+export const CHAIRMAN_INFO = {
+  name: 'Yadab Pandey',
+  title: 'Founder and Chairman',
+  institution: 'Vaidik Vidyapeeth',
+  location: 'Gothatar, Kathmandu',
+  photo: '/chairman.jpg',
+  shortQuote:
+    'At Vaidik Vidyapeeth, we believe that education extends far beyond textbooks and examinations. Our responsibility is to help students develop curiosity, confidence, discipline and compassion while providing them with a strong academic foundation. Through the partnership of teachers, students and parents, we aim to create an environment where every learner feels supported and inspired to succeed.',
+  fullMessage: [
     'Education is not merely the acquisition of knowledge; it is the shaping of character, vision, and purpose. At our school, we believe that while a picture can convey a million words, it is a strong vision that guides a million meaningful efforts. We are dedicated to provide an environment where young minds are nurtured with curiosity, integrity, and confidence. We strive to empower our students with not only academic excellence but also the values and skills required to thrive in an ever-changing world. With the dedicated efforts of our educators, the trust of parents, and the enthusiasm of our students, we continue to build a learning community that inspires innovation, responsibility, and lifelong learning. Together, we are shaping futures and preparing our children to become thoughtful leaders and compassionate global citizens. I warmly welcome you to be a part of our journey toward excellence in education'
   ],
 };
@@ -208,7 +221,7 @@ export const FACILITIES_DATA: FacilityItem[] = [
     description:
       'A thoughtfully crafted haven tailored specifically for early learners (Playgroup, Nursery, LKG, UKG), featuring play-based inquiry, tactile sensorial materials, and nurturing educators.',
     iconName: 'Smile',
-    image: 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=1200&q=80',
+    image: '5.jpg',
     highlights: ['Safe child-proofed indoor & outdoor spaces', 'Montessori-inspired sensory materials', 'Phonics & early numeracy exploration', 'Gentle social-emotional guidance'],
   },
 ];

@@ -8,7 +8,9 @@ export type PageId =
   | 'gallery'
   | 'admissions'
   | 'contact'
-  | 'principal';
+  | 'principal'
+  | 'chairman'
+  ;
 
 export interface EventItem {
   id: string;

@@ -308,6 +308,21 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate }) => {
             </button>
           </div>
 
+           <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#164287]">
+            Words From Our Chairman
+          </h2>
+
+          <div className="pt-2">
+            <button
+              onClick={() => onNavigate('chairman')}
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded text-sm font-medium bg-[#164287] text-white hover:bg-[#0f2e60] transition-colors cursor-pointer"
+            >
+              <span>Read the Full Chairman's Message</span>
+
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+
         </div>
 
       </section>

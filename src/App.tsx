@@ -18,6 +18,7 @@ import { GalleryView } from './views/GalleryView';
 import { AdmissionsView } from './views/AdmissionsView';
 import { ContactView } from './views/ContactView';
 import { EnquiryForm } from './components/EnquiryForm';
+import {ChairmanView} from './views/ChairmanView';
 import { X } from 'lucide-react';
 
 export default function App() {
@@ -59,6 +60,8 @@ export default function App() {
         return <AboutView onNavigate={handleNavigate} />;
       case 'principal':
         return <PrincipalView onNavigate={handleNavigate} />;
+      case 'chairman':
+        return <ChairmanView onNavigate={handleNavigate} />;
       case 'academics':
         return (
           <AcademicsView

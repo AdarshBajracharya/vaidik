@@ -175,7 +175,7 @@ export const FacilitiesView: React.FC<FacilitiesViewProps> = ({ onNavigate, onOp
           </div>
           <div className="mt-8 text-center">
             <button
-              onClick={() => onNavigate('preschool')}
+              onClick={() => window.open("https://eurostarschool.edu.np/", "_blank")}
               className="inline-flex items-center gap-2 px-6 py-3 rounded bg-[#164287] text-white text-sm font-medium hover:bg-[#0f2e60] transition-colors cursor-pointer"
             >
               <span>Visit the Dedicated Pre-School Wing Page</span>
