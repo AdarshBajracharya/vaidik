@@ -165,24 +165,7 @@ export const AcademicsView: React.FC<AcademicsViewProps> = ({ onNavigate, onOpen
               </p>
             </div>
           </div>
-
-          {/* CTA Banner */}
-          <div className="mt-16 p-8 bg-slate-50 border border-slate-200 rounded text-center max-w-2xl mx-auto space-y-4">
-            <h3 className="font-serif text-xl font-bold text-[#164287]">
-              Learn More About Our Academic Levels
-            </h3>
-            <p className="text-slate-600 text-xs sm:text-sm">
-              Contact our academic admissions counselor to discuss grade placement, curriculum details, or schedule an academic consultation.
-            </p>
-            <div className="pt-2 flex justify-center gap-4">
-              <button
-                onClick={onOpenEnquiry}
-                className="px-6 py-2.5 rounded bg-[#164287] text-white text-sm font-medium hover:bg-[#0f2e60] transition-colors cursor-pointer"
-              >
-                Submit Academic Enquiry
-              </button>
-            </div>
-          </div>
+     
         </div>
       </section>
     </div>

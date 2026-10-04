@@ -227,86 +227,86 @@ export const FACILITIES_DATA: FacilityItem[] = [
 ];
 
 export const EVENTS_DATA: EventItem[] = [
-  {
-    id: 'event-1',
-    title: 'Annual Sports Day & Athletic Meet',
-    date: 'November 18, 2026',
-    category: 'Sports',
-    summary:
-      'A vibrant day of track races, field athletics, march-past, and inter-house teamwork celebrating physical fitness and sportsmanship.',
-    fullDescription:
-      'The Annual Sports Day brings together students, teachers, and parents for an exciting day of athletic competition and community spirit. Events include sprint dashes, relay races, obstacle challenges, long jumps, and the prestigious House March-Past. Every participant learns the invaluable values of fair play, perseverance, and cheering on fellow peers.',
-    time: '9:00 AM – 3:30 PM',
-    location: 'Vaidik Sports Ground, Gothatar',
-    coverImage: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1000&q=80',
-    gallery: [
-      'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=800&q=80',
-    ],
-  },
-  {
-    id: 'event-2',
-    title: 'Grand Cultural Celebration & Saraswati Puja',
-    date: 'February 12, 2026',
-    category: 'Cultural',
-    summary:
-      'Honoring Goddess Saraswati, the patron of knowledge and arts, with devotional prayers, classical music, traditional dance, and student performances.',
-    fullDescription:
-      'Vaidik Vidyapeeth observes Saraswati Puja and our Cultural Celebration with deep reverence and artistic joy. Students present traditional folk dances, classical choral renditions, and poetry recitations. Toddlers take their first writing steps (Aksharabhyasa), marking their formal initiation into the lifelong journey of knowledge.',
-    time: '8:30 AM – 2:00 PM',
-    location: 'School Main Auditorium & Courtyard',
-    coverImage: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1000&q=80',
-    gallery: [
-      'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80',
-    ],
-  },
-  {
-    id: 'event-3',
-    title: 'Student Art & Science Discovery Exhibition',
-    date: 'September 24, 2026',
-    category: 'Academic',
-    summary:
-      'A showcase of student ingenuity featuring interactive scientific working models, robotics demonstrations, and fine art displays.',
-    fullDescription:
-      'Our annual Exhibition transforms the school corridors and laboratories into an interactive showcase of innovation and creativity. Students across all grade levels present working models in renewable energy, environmental conservation, biology, and applied physics, accompanied by a curated fine-art gallery showcasing watercolors, sculptures, and crafts.',
-    time: '10:00 AM – 3:00 PM',
-    location: 'Senior Wing Laboratories & Art Studio',
-    coverImage: 'https://images.unsplash.com/photo-1564069114553-7215e1ff1890?auto=format&fit=crop&w=1000&q=80',
-    gallery: [
-      'https://images.unsplash.com/photo-1564069114553-7215e1ff1890?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80',
-    ],
-  },
-  {
-    id: 'event-4',
-    title: 'Inter-House Taekwondo Championship',
-    date: 'August 06, 2026',
-    category: 'Sports',
-    summary:
-      'Students demonstrate discipline, agility, and precision sparring in our intra-school martial arts competition.',
-    fullDescription:
-      'Demonstrating months of focused practice, students test their forms (poomsae) and controlled sparring (kyorugi) under qualified referees. The event emphasizes martial discipline, respect for opponents, and personal perseverance.',
-    time: '10:30 AM – 2:30 PM',
-    location: 'Martial Arts Dojang, Vaidik Campus',
-    coverImage: 'https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=1000&q=80',
-  },
-  {
-    id: 'event-5',
-    title: 'Literary Week & Spelling Bee Challenge',
-    date: 'July 15, 2026',
-    category: 'Activities',
-    summary:
-      'A week celebrating language, storytelling, debate, book character dress-up, and competitive vocabulary quizzes.',
-    fullDescription:
-      'Students develop rhetorical poise and linguistic flair during Literary Week. Activities include bilingual speech competitions in Nepali and English, creative writing workshops, storytelling sessions for primary students, and the annual school Spelling Bee.',
-    time: 'Throughout School Week',
-    location: 'School Library & Classrooms',
-    coverImage: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=1000&q=80',
-  },
+  // {
+  //   id: 'event-1',
+  //   title: 'Annual Sports Day & Athletic Meet',
+  //   date: 'November 18, 2026',
+  //   category: 'Sports',
+  //   summary:
+  //     'A vibrant day of track races, field athletics, march-past, and inter-house teamwork celebrating physical fitness and sportsmanship.',
+  //   fullDescription:
+  //     'The Annual Sports Day brings together students, teachers, and parents for an exciting day of athletic competition and community spirit. Events include sprint dashes, relay races, obstacle challenges, long jumps, and the prestigious House March-Past. Every participant learns the invaluable values of fair play, perseverance, and cheering on fellow peers.',
+  //   time: '9:00 AM – 3:30 PM',
+  //   location: 'Vaidik Sports Ground, Gothatar',
+  //   coverImage: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1000&q=80',
+  //   gallery: [
+  //     'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=800&q=80',
+  //     'https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=800&q=80',
+  //     'https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=800&q=80',
+  //   ],
+  // },
+  // {
+  //   id: 'event-2',
+  //   title: 'Grand Cultural Celebration & Saraswati Puja',
+  //   date: 'February 12, 2026',
+  //   category: 'Cultural',
+  //   summary:
+  //     'Honoring Goddess Saraswati, the patron of knowledge and arts, with devotional prayers, classical music, traditional dance, and student performances.',
+  //   fullDescription:
+  //     'Vaidik Vidyapeeth observes Saraswati Puja and our Cultural Celebration with deep reverence and artistic joy. Students present traditional folk dances, classical choral renditions, and poetry recitations. Toddlers take their first writing steps (Aksharabhyasa), marking their formal initiation into the lifelong journey of knowledge.',
+  //   time: '8:30 AM – 2:00 PM',
+  //   location: 'School Main Auditorium & Courtyard',
+  //   coverImage: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1000&q=80',
+  //   gallery: [
+  //     'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80',
+  //     'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=800&q=80',
+  //     'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80',
+  //   ],
+  // },
+  // {
+  //   id: 'event-3',
+  //   title: 'Student Art & Science Discovery Exhibition',
+  //   date: 'September 24, 2026',
+  //   category: 'Academic',
+  //   summary:
+  //     'A showcase of student ingenuity featuring interactive scientific working models, robotics demonstrations, and fine art displays.',
+  //   fullDescription:
+  //     'Our annual Exhibition transforms the school corridors and laboratories into an interactive showcase of innovation and creativity. Students across all grade levels present working models in renewable energy, environmental conservation, biology, and applied physics, accompanied by a curated fine-art gallery showcasing watercolors, sculptures, and crafts.',
+  //   time: '10:00 AM – 3:00 PM',
+  //   location: 'Senior Wing Laboratories & Art Studio',
+  //   coverImage: 'https://images.unsplash.com/photo-1564069114553-7215e1ff1890?auto=format&fit=crop&w=1000&q=80',
+  //   gallery: [
+  //     'https://images.unsplash.com/photo-1564069114553-7215e1ff1890?auto=format&fit=crop&w=800&q=80',
+  //     'https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?auto=format&fit=crop&w=800&q=80',
+  //     'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80',
+  //   ],
+  // },
+  // {
+  //   id: 'event-4',
+  //   title: 'Inter-House Taekwondo Championship',
+  //   date: 'August 06, 2026',
+  //   category: 'Sports',
+  //   summary:
+  //     'Students demonstrate discipline, agility, and precision sparring in our intra-school martial arts competition.',
+  //   fullDescription:
+  //     'Demonstrating months of focused practice, students test their forms (poomsae) and controlled sparring (kyorugi) under qualified referees. The event emphasizes martial discipline, respect for opponents, and personal perseverance.',
+  //   time: '10:30 AM – 2:30 PM',
+  //   location: 'Martial Arts Dojang, Vaidik Campus',
+  //   coverImage: 'https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=1000&q=80',
+  // },
+  // {
+  //   id: 'event-5',
+  //   title: 'Literary Week & Spelling Bee Challenge',
+  //   date: 'July 15, 2026',
+  //   category: 'Activities',
+  //   summary:
+  //     'A week celebrating language, storytelling, debate, book character dress-up, and competitive vocabulary quizzes.',
+  //   fullDescription:
+  //     'Students develop rhetorical poise and linguistic flair during Literary Week. Activities include bilingual speech competitions in Nepali and English, creative writing workshops, storytelling sessions for primary students, and the annual school Spelling Bee.',
+  //   time: 'Throughout School Week',
+  //   location: 'School Library & Classrooms',
+  //   coverImage: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=1000&q=80',
+  // },
 ];
 
 export const GALLERY_PHOTOS: GalleryPhoto[] = [

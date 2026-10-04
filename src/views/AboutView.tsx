@@ -28,7 +28,7 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate }) => {
       <section className="bg-slate-900 text-white py-16 md:py-20 relative overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-25">
           <img
-            src="https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=1600&q=80"
+            src="vaidik.jpg"
             alt="School Campus"
             className="w-full h-full object-cover"
           />
@@ -102,16 +102,12 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate }) => {
 
               <div className="aspect-4/3 rounded-sm overflow-hidden border border-slate-200 shadow-sm">
                 <img
-                  src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=1000&q=80"
+                  src="facility.jpg"
                   alt="Students learning at Vaidik Vidyapeeth"
                   className="w-full h-full object-cover"
                 />
               </div>
-
-              <p className="text-xs text-slate-500 mt-2 text-center">
-                Classroom collaboration and teacher mentorship at Gothatar
-              </p>
-
+             
             </div>
 
           </div>

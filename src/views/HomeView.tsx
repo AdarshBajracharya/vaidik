@@ -118,17 +118,6 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 <span>Explore Our School</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
-
-              <button
-                id="hero-enquire-btn"
-                onClick={() => {
-                  const elem = document.getElementById('enquiry-section');
-                  elem?.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="inline-flex items-center justify-center px-7 py-3.5 rounded text-sm font-medium bg-white text-[#164287] hover:bg-slate-100 transition-colors shadow-sm cursor-pointer border border-transparent"
-              >
-                Admissions / Enquire Now
-              </button>
             </div>
           </div>
         </div>
@@ -926,74 +915,6 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </div>
       </section>
 
-      {/* ==================================================
-          12. ADMISSIONS CALL TO ACTION
-          ================================================== */}
-      <section
-        className="py-16 md:py-20 bg-white border-t border-slate-200"
-        id="admissions-cta"
-      >
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-          <div className="inline-flex items-center gap-2">
-            <span className="w-5 h-[2px] bg-[#d91f26]" />
-
-            <span className="text-xs font-semibold uppercase tracking-wider text-[#d91f26]">
-              Admissions Open
-            </span>
-
-            <span className="w-5 h-[2px] bg-[#d91f26]" />
-          </div>
-
-          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#164287] leading-tight">
-            Begin Your Child&apos;s Journey With Vaidik Vidyapeeth
-          </h2>
-
-          <p className="text-slate-600 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            Discover a supportive learning environment where academic growth,
-            personal development and meaningful experiences come together.
-            Contact our school team to learn more about admissions and
-            available programmes.
-          </p>
-
-          <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button
-              onClick={() => onNavigate('admissions')}
-              className="w-full sm:w-auto px-7 py-3 rounded text-sm font-medium border border-[#164287] text-[#164287] hover:bg-blue-50/50 transition-colors cursor-pointer"
-            >
-              Admission Information
-            </button>
-
-            <button
-              onClick={() => {
-                const elem = document.getElementById('enquiry-section');
-                elem?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="w-full sm:w-auto px-7 py-3 rounded text-sm font-medium bg-[#164287] text-white hover:bg-[#0f2e60] transition-colors shadow-sm cursor-pointer"
-            >
-              Enquire Now
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* ==================================================
-          13. ENQUIRY FORM
-          ================================================== */}
-      <section
-        className="py-20 bg-slate-50 border-t border-slate-200"
-        id="enquiry-section"
-      >
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            align="center"
-            eyebrow="Get In Touch"
-            title="Admissions Enquiry Form"
-            description="Complete the form below to enquire about admissions, curriculum, or arrange a campus visit with our academic counselor."
-          />
-
-          <EnquiryForm />
-        </div>
-      </section>
 
       {/* ==================================================
           14. CONTACT & MAP
