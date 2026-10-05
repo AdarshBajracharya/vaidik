@@ -70,14 +70,6 @@ export const PrincipalView: React.FC<PrincipalViewProps> = ({ onNavigate }) => {
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-slate-100">
-                  <button
-                    onClick={() => onNavigate('contact')}
-                    className="w-full py-2.5 px-4 text-xs font-semibold uppercase tracking-wider rounded border border-[#164287] text-[#164287] hover:bg-blue-50/50 transition-colors cursor-pointer text-center"
-                  >
-                    Schedule a Campus Meeting
-                  </button>
-                </div>
               </div>
             </div>
 
