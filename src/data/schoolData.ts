@@ -18,7 +18,7 @@ export const SCHOOL_INFO = {
 };
 
 export const QUICK_STATS = [
-  { label: 'Gothatar, Kathmandu', sublabel: 'Peaceful Academic Campus' },
+  { label: 'Gothatar, Kathmandu', sublabel: 'Peaceful Academic School' },
   { label: 'Academic Excellence', sublabel: 'Foundational Knowledge' },
   { label: 'Holistic Development', sublabel: 'Balanced Mind & Body' },
   { label: 'Safe Learning Environment', sublabel: 'Caring & Disciplined' },
@@ -73,7 +73,7 @@ export const WHY_CHOOSE_ITEMS = [
   {
     title: 'Safe & Supportive Environment',
     description:
-      'A secure, disciplined campus culture that prioritises student physical safety, emotional well-being, and respectful peer interactions.',
+      'A secure, disciplined School culture that prioritises student physical safety, emotional well-being, and respectful peer interactions.',
     iconName: 'ShieldCheck',
   },
   {
@@ -127,7 +127,7 @@ export const FACILITIES_DATA: FacilityItem[] = [
     name: 'Infirmary & First Aid',
     category: 'Student Support',
     description:
-      'A dedicated on-campus first-aid unit with clean rest beds, emergency medical supplies, and trained personnel to attend to student health concerns immediately.',
+      'A dedicated on-School first-aid unit with clean rest beds, emergency medical supplies, and trained personnel to attend to student health concerns immediately.',
     iconName: 'Stethoscope',
     image: '',
     highlights: ['Trained first-aid staff on duty', 'Clean emergency rest stations', 'Regular health screening records', 'Immediate parental notification protocol'],
@@ -291,7 +291,7 @@ export const EVENTS_DATA: EventItem[] = [
   //   fullDescription:
   //     'Demonstrating months of focused practice, students test their forms (poomsae) and controlled sparring (kyorugi) under qualified referees. The event emphasizes martial discipline, respect for opponents, and personal perseverance.',
   //   time: '10:30 AM – 2:30 PM',
-  //   location: 'Martial Arts Dojang, Vaidik Campus',
+  //   location: 'Martial Arts Dojang, Vaidik School',
   //   coverImage: 'https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=1000&q=80',
   // },
   // {
@@ -312,10 +312,10 @@ export const EVENTS_DATA: EventItem[] = [
 export const GALLERY_PHOTOS: GalleryPhoto[] = [
   {
     id: 'g-1',
-    title: 'Modern Campus Architecture',
-    category: 'Campus',
+    title: 'Modern School Architecture',
+    category: 'School',
     image: 'vaidik.jpg',
-    caption: 'Vaidik Vidyapeeth school building and well-planned campus in Gothatar, Kathmandu.',
+    caption: 'Vaidik Vidyapeeth school building and well-planned School in Gothatar, Kathmandu.',
   },
   {
     id: 'g-2',
@@ -327,7 +327,7 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
   {
     id: 'g-3',
     title: '',
-    category: 'Campus',
+    category: 'School',
     image: 'vaidik.webp',
     caption: 'Dedicated library resources fostering deep reading habits and scholastic research.',
   },
@@ -385,7 +385,7 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
     title: 'Annual Sports Athletics Meet',
     category: 'Events',
     image: '',
-    caption: 'The competitive yet cheerful camaraderie of the Annual Sports Day at our Gothatar campus.',
+    caption: 'The competitive yet cheerful camaraderie of the Annual Sports Day at our Gothatar School.',
   },
   {
     id: 'g-12',

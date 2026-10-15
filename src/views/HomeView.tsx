@@ -77,7 +77,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
         <div className="absolute inset-0 z-0">
           <img
             src="/vaidik.jpg"
-            alt="Vaidik Vidyapeeth School Building and Campus Infrastructure in Gothatar"
+            alt="Vaidik Vidyapeeth School Building and School Infrastructure in Gothatar"
             className="w-full h-full object-cover transform scale-100 transition-transform duration-1000 ease-out"
             style={{ objectPosition: 'center 20%' }}
           />
@@ -137,9 +137,8 @@ export const HomeView: React.FC<HomeViewProps> = ({
             {QUICK_STATS.map((stat, idx) => (
               <div
                 key={idx}
-                className={`pt-3 md:pt-0 ${
-                  idx > 0 ? 'md:pl-6' : ''
-                } flex flex-col justify-center`}
+                className={`pt-3 md:pt-0 ${idx > 0 ? 'md:pl-6' : ''
+                  } flex flex-col justify-center`}
               >
                 <div className="flex items-center gap-2 mb-1">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#d91f26] shrink-0" />
@@ -188,7 +187,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 and a supportive school community, we aim to prepare students
                 not only for examinations but also for life beyond the
                 classroom. Situated in the peaceful surroundings of Gothatar,
-                Kathmandu, our campus allows children to focus, explore, and
+                Kathmandu, our School allows children to focus, explore, and
                 flourish in a secure academic atmosphere.
               </p>
 
@@ -219,7 +218,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   <span>Student-Centred Academic Engagement</span>
 
                   <span className="text-[#164287] font-medium">
-                    Gothatar Campus
+                    Gothatar School
                   </span>
                 </div>
               </div>
@@ -457,7 +456,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
               <div className="aspect-16/10 rounded-sm overflow-hidden border border-slate-200 shadow-sm bg-white">
                 <img
                   src="facility.jpg"
-                  alt="Vaidik Vidyapeeth Campus Infrastructure and Learning Environment in Gothatar"
+                  alt="Vaidik Vidyapeeth School Infrastructure and Learning Environment in Gothatar"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -468,7 +467,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 <span className="w-5 h-[2px] bg-[#d91f26]" />
 
                 <span className="text-xs font-semibold uppercase tracking-wider text-[#d91f26]">
-                  Campus & Facilities
+                  School & Facilities
                 </span>
               </div>
 
@@ -477,7 +476,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
               </h2>
 
               <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                Vaidik Vidyapeeth&apos;s campus at Gothatar is purposefully
+                Vaidik Vidyapeeth&apos;s School at Gothatar is purposefully
                 designed to promote academic focus, physical vitality, and
                 student security. Our bright classrooms, structured play
                 areas, and quiet reading commons provide children with the
@@ -506,7 +505,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   <span className="w-1.5 h-1.5 rounded-full bg-[#d91f26] shrink-0 mt-2" />
 
                   <span>
-                    Monitored entry points and high standards of campus
+                    Monitored entry points and high standards of School
                     hygiene.
                   </span>
                 </div>
@@ -517,7 +516,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   onClick={() => onNavigate('facilities')}
                   className="inline-flex items-center gap-2 text-sm font-semibold text-[#164287] hover:text-[#d91f26] transition-colors cursor-pointer group"
                 >
-                  <span>Explore All Campus Facilities</span>
+                  <span>Explore All School Facilities</span>
 
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
                 </button>
@@ -552,7 +551,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
                 <div className="p-4 bg-slate-50 border-t border-slate-200">
                   <p className="text-xs font-semibold text-[#164287] uppercase tracking-wider">
-                    Campus Feature
+                    School Feature
                   </p>
 
                   <p className="text-sm font-medium text-slate-800">
@@ -832,7 +831,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 md:mb-12">
             <SectionHeader
-              eyebrow="Campus Life"
+              eyebrow="School Life"
               title="School Events"
               description="Moments that bring our school community together."
               className="mb-0"
@@ -873,7 +872,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             <SectionHeader
               eyebrow="Gallery"
               title="Life at Vaidik"
-              description="Snapshots of classroom discovery, sports tournaments, arts, and vibrant celebrations at our Gothatar campus."
+              description="Snapshots of classroom discovery, sports tournaments, arts, and vibrant celebrations at our Gothatar School."
               className="mb-0"
             />
 
@@ -929,9 +928,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             <div className="lg:col-span-5 space-y-6">
               <SectionHeader
-                eyebrow="Campus Location"
+                eyebrow="School Location"
                 title="Contact Vaidik Vidyapeeth"
-                description="We welcome parents, guardians, and prospective students to visit our campus in Gothatar."
+                description="We welcome parents, guardians, and prospective students to visit our School in Gothatar."
                 className="mb-6"
               />
 

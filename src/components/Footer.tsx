@@ -96,7 +96,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenEnquiry }) => 
           <div className="lg:col-span-3 space-y-3">
             <h3 className="text-white font-serif text-base font-semibold tracking-wide flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#d91f26]" />
-              School Campus
+              School
             </h3>
             <div className="space-y-3 text-sm text-slate-300">
               <div className="flex items-start gap-2.5">

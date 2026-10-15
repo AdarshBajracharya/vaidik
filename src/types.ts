@@ -28,7 +28,7 @@ export interface EventItem {
 export interface GalleryPhoto {
   id: string;
   title: string;
-  category: 'Campus' | 'Classroom' | 'Events' | 'Sports' | 'Arts & Culture' | 'Pre-School';
+  category: 'School' | 'Classroom' | 'Events' | 'Sports' | 'Arts & Culture' | 'Pre-School';
   image: string;
   caption: string;
 }

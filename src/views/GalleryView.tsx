@@ -13,7 +13,7 @@ export const GalleryView: React.FC<GalleryViewProps> = ({ photos, onSelectPhoto 
 
   const categories = [
     'All',
-    'Campus',
+    'School',
     'Classroom',
     'Events',
     'Sports',
@@ -42,7 +42,7 @@ export const GalleryView: React.FC<GalleryViewProps> = ({ photos, onSelectPhoto 
               School Photo Gallery
             </h1>
             <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
-              Experience the vibrant academic atmosphere, campus life, athletic meets, and creative expressions at Vaidik Vidyapeeth, Gothatar.
+              Experience the vibrant academic atmosphere, School life, athletic meets, and creative expressions at Vaidik Vidyapeeth, Gothatar.
             </p>
           </div>
         </div>
@@ -59,8 +59,8 @@ export const GalleryView: React.FC<GalleryViewProps> = ({ photos, onSelectPhoto 
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
                   className={`px-4 py-2 text-xs sm:text-sm font-medium rounded-md whitespace-nowrap transition-colors cursor-pointer ${isActive
-                      ? 'bg-[#164287] text-white shadow-xs'
-                      : 'bg-white text-slate-700 hover:bg-slate-200 border border-slate-200'
+                    ? 'bg-[#164287] text-white shadow-xs'
+                    : 'bg-white text-slate-700 hover:bg-slate-200 border border-slate-200'
                     }`}
                 >
                   {cat}

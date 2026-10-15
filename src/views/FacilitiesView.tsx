@@ -91,7 +91,7 @@ export const FacilitiesView: React.FC<FacilitiesViewProps> = ({ onNavigate, onOp
             <div className="inline-flex items-center gap-2 mb-3">
               <span className="w-5 h-[2px] bg-[#d91f26]" />
               <span className="text-xs font-semibold uppercase tracking-wider text-red-400">
-                Campus Infrastructure
+                School Infrastructure
               </span>
             </div>
             <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight">
@@ -121,7 +121,7 @@ export const FacilitiesView: React.FC<FacilitiesViewProps> = ({ onNavigate, onOp
             onClick={onOpenEnquiry}
             className="text-xs font-semibold text-[#164287] hover:text-[#d91f26] transition-colors cursor-pointer"
           >
-            Visit Campus →
+            Visit School →
           </button>
         </div>
       </div>
@@ -144,7 +144,7 @@ export const FacilitiesView: React.FC<FacilitiesViewProps> = ({ onNavigate, onOp
           <SectionHeader
             eyebrow="Welfare & Safety"
             title="Student Support Facilities"
-            description="Comprehensive on-campus health care, safe transportation routes across Gothatar, and dedicated after-school programs."
+            description="Comprehensive on-School health care, safe transportation routes across Gothatar, and dedicated after-school programs."
           />
           <div className="space-y-4">
             {studentSupport.map((facility, idx) => renderFacilityRow(facility, idx))}

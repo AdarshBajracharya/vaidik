@@ -35,7 +35,7 @@ export const ContactView: React.FC = () => {
             {/* Contact Information */}
             <div className="lg:col-span-5 space-y-6">
               <SectionHeader
-                eyebrow="Campus Office"
+                eyebrow="School Office"
                 title="School Contact Details"
                 className="mb-4"
               />
@@ -45,7 +45,7 @@ export const ContactView: React.FC = () => {
                   <div className="flex items-start gap-3.5">
                     <MapPin className="w-5 h-5 text-[#d91f26] shrink-0 mt-1" />
                     <div>
-                      <h4 className="font-serif font-bold text-slate-900 text-base">Campus Location</h4>
+                      <h4 className="font-serif font-bold text-slate-900 text-base">School Location</h4>
                       <p className="text-sm font-medium text-slate-800 mt-1">{SCHOOL_INFO.name}</p>
                       <p className="text-xs text-slate-600">{SCHOOL_INFO.location}</p>
                       <p className="text-xs text-slate-500 mt-0.5">Kageshwori Manohara Municipality, Kathmandu, Nepal</p>
@@ -91,7 +91,7 @@ export const ContactView: React.FC = () => {
             {/* Map */}
             <div className="lg:col-span-7 space-y-4">
               <SectionHeader
-                eyebrow="Campus Map"
+                eyebrow="School Map"
                 title="Location in Gothatar"
                 className="mb-4"
               />

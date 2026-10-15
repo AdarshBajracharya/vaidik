@@ -29,7 +29,7 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate }) => {
         <div className="absolute inset-0 z-0 opacity-25">
           <img
             src="vaidik.jpg"
-            alt="School Campus"
+            alt="School School"
             className="w-full h-full object-cover"
           />
         </div>
@@ -84,7 +84,7 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate }) => {
 
               <p className="text-slate-600 text-sm md:text-base leading-relaxed">
                 We believe that education must not reduce childhood to
-                mechanical test performance. In our Gothatar campus, students
+                mechanical test performance. In our Gothatar School, students
                 are encouraged to ask thoughtful questions, engage in hands-on
                 experiments, cultivate artistic sensibilities, and practice
                 teamwork through sports and martial arts.
@@ -107,7 +107,7 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate }) => {
                   className="w-full h-full object-cover"
                 />
               </div>
-             
+
             </div>
 
           </div>
@@ -304,7 +304,7 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate }) => {
             </button>
           </div>
 
-           <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#164287]">
+          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#164287]">
             Words From Our Chairman
           </h2>
 

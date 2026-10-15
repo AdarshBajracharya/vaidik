@@ -92,14 +92,14 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
           Enquiry Received
         </h3>
         <p className="text-slate-600 text-base leading-relaxed mb-6">
-          Thank you. Your enquiry has been submitted successfully. Our school team will contact you shortly regarding admissions and campus visits.
+          Thank you. Your enquiry has been submitted successfully. Our school team will contact you shortly regarding admissions and school visits.
         </p>
         <div className="p-4 bg-slate-50 border border-slate-200 rounded text-left text-xs text-slate-600 mb-6 space-y-1">
           <p className="font-semibold text-slate-700">Enquiry Summary:</p>
           <p><span className="text-slate-500">Parent/Guardian:</span> {formData.parentName}</p>
           <p><span className="text-slate-500">Student:</span> {formData.studentName}</p>
           <p><span className="text-slate-500">Contact:</span> {formData.phone}</p>
-          <p><span className="text-slate-500">Campus:</span> Vaidik Vidyapeeth (Gothatar, Kathmandu)</p>
+          <p><span className="text-slate-500">School:</span> Vaidik Vidyapeeth (Gothatar, Kathmandu)</p>
         </div>
         <button
           onClick={handleReset}
@@ -341,7 +341,7 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
             <option value="Regular Academic Programme">Regular Academic Programme</option>
             <option value="Pre-School Wing (Early Childhood Education)">Pre-School Wing (Early Childhood Education)</option>
             <option value="Academic + After School Program">Academic + After School Program</option>
-            <option value="General Admission Enquiry & Campus Tour">General Admission Enquiry & Campus Tour</option>
+            <option value="General Admission Enquiry & School Tour">General Admission Enquiry & School Tour</option>
           </select>
         </div>
 
@@ -367,7 +367,7 @@ export const EnquiryForm: React.FC<EnquiryFormProps> = ({
 
       <div className="mt-8 pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
         <p className="text-xs text-slate-500">
-          Campus visits are welcome during regular office hours at Gothatar, Kathmandu.
+          School visits are welcome during regular office hours at Gothatar, Kathmandu.
         </p>
         <button
           type="submit"

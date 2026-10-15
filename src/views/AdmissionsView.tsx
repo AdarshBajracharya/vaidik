@@ -13,8 +13,8 @@ export const AdmissionsView: React.FC<AdmissionsViewProps> = ({ onNavigate }) =>
   const admissionSteps = [
     {
       step: '01',
-      title: 'Enquiry & Campus Visit',
-      desc: 'Submit our online enquiry form or visit our campus in Gothatar. Our admissions counselor will tour the facilities and discuss grade curriculum.',
+      title: 'Enquiry & School Visit',
+      desc: 'Submit our online enquiry form or visit our School in Gothatar. Our admissions counselor will tour the facilities and discuss grade curriculum.',
     },
     {
       step: '02',
@@ -102,7 +102,7 @@ export const AdmissionsView: React.FC<AdmissionsViewProps> = ({ onNavigate }) =>
                 className="mb-4"
               />
               <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                Parents are requested to bring original documents along with photocopies during the campus interaction for prompt verification.
+                Parents are requested to bring original documents along with photocopies during the School interaction for prompt verification.
               </p>
               <div className="space-y-3 pt-2">
                 {requiredDocuments.map((doc, idx) => (
@@ -120,7 +120,7 @@ export const AdmissionsView: React.FC<AdmissionsViewProps> = ({ onNavigate }) =>
                   Admissions Office & Inquiries
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  For grade placement queries, transportation coverage across Gothatar, or scheduling a weekday campus tour, please reach out directly:
+                  For grade placement queries, transportation coverage across Gothatar, or scheduling a weekday School tour, please reach out directly:
                 </p>
                 <div className="space-y-2.5 text-xs sm:text-sm text-slate-700 pt-2 border-t border-slate-100">
                   <div className="flex items-center gap-2">
