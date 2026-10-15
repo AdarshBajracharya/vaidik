@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { GalleryPhoto } from '../types';
-import { GALLERY_PHOTOS } from '../data/schoolData';
 import { SectionHeader } from '../components/SectionHeader';
 import { Image as ImageIcon, ZoomIn } from 'lucide-react';
 
 interface GalleryViewProps {
+  photos: GalleryPhoto[];
   onSelectPhoto: (photo: GalleryPhoto) => void;
 }
 
-export const GalleryView: React.FC<GalleryViewProps> = ({ onSelectPhoto }) => {
+export const GalleryView: React.FC<GalleryViewProps> = ({ photos, onSelectPhoto }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
 
   const categories = [
@@ -21,7 +21,7 @@ export const GalleryView: React.FC<GalleryViewProps> = ({ onSelectPhoto }) => {
     'Pre-School',
   ];
 
-  const filteredPhotos = GALLERY_PHOTOS.filter((photo) => {
+  const filteredPhotos = photos.filter((photo) => {
     if (selectedCategory === 'All') return true;
     return photo.category === selectedCategory;
   });

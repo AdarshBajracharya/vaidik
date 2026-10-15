@@ -62,7 +62,7 @@ export const AcademicsView: React.FC<AcademicsViewProps> = ({ onNavigate, onOpen
             <div className="lg:col-span-5">
               <div className="aspect-4/3 rounded-sm overflow-hidden border border-slate-200 shadow-sm">
                 <img
-                  src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1000&q=80"
+                  src=""
                   alt="Students engaged in purposeful academic study"
                   className="w-full h-full object-cover"
                 />

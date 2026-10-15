@@ -99,7 +99,7 @@ export const FACILITIES_DATA: FacilityItem[] = [
     description:
       'A quiet, sunlit learning commons housing an extensive collection of academic texts, literature, reference books, periodicals, and quiet reading desks to foster early reading habits.',
     iconName: 'Library',
-    image: 'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=1200&q=80',
+    image: '',
     highlights: ['Curated fiction and non-fiction', 'Quiet study cubicles', 'Digital reading resources', 'Weekly guided library hours'],
   },
   {
@@ -109,7 +109,7 @@ export const FACILITIES_DATA: FacilityItem[] = [
     description:
       'Modern computing terminals equipped with filtered high-speed internet, educational software, and foundational programming tools to build essential digital literacy.',
     iconName: 'Monitor',
-    image: 'https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?auto=format&fit=crop&w=1200&q=80',
+    image: '',
     highlights: ['1:1 student-to-computer ratio during lab sessions', 'Supervised safe internet browsing', 'Typing, coding, and multimedia creation', 'Updated hardware & software'],
   },
   {
@@ -119,7 +119,7 @@ export const FACILITIES_DATA: FacilityItem[] = [
     description:
       'Spacious, well-ventilated classrooms with ergonomic seating, ample natural lighting, and modern display boards designed to facilitate collaborative learning and focused study.',
     iconName: 'Chalkboard',
-    image: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1200&q=80',
+    image: '',
     highlights: ['Ventilated and naturally lit spaces', 'Interactive teaching displays', 'Ergonomic age-appropriate furniture', 'Optimal student-teacher ratio'],
   },
   {
@@ -129,7 +129,7 @@ export const FACILITIES_DATA: FacilityItem[] = [
     description:
       'A dedicated on-campus first-aid unit with clean rest beds, emergency medical supplies, and trained personnel to attend to student health concerns immediately.',
     iconName: 'Stethoscope',
-    image: 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=1200&q=80',
+    image: '',
     highlights: ['Trained first-aid staff on duty', 'Clean emergency rest stations', 'Regular health screening records', 'Immediate parental notification protocol'],
   },
   {
@@ -139,7 +139,7 @@ export const FACILITIES_DATA: FacilityItem[] = [
     description:
       'Safe, reliable school bus fleet covering designated routes across Gothatar and surrounding residential sectors, operated by vetted, experienced drivers and bus attendants.',
     iconName: 'Bus',
-    image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80',
+    image: '',
     highlights: ['Comprehensive neighborhood routes', 'Dedicated caring bus monitors', 'Strict speed and safety protocols', 'Clean, well-maintained vehicles'],
   },
   {
@@ -149,7 +149,7 @@ export const FACILITIES_DATA: FacilityItem[] = [
     description:
       'Structured post-dismissal care providing guided homework supervision, remedial teacher support, and supervised enrichment clubs for working parents.',
     iconName: 'Clock',
-    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=80',
+    image: '',
     highlights: ['Supervised homework completion', 'Subject-specific remedial assistance', 'Wholesome evening snacks', 'Safe supervised pickup hours'],
   },
   // Extracurricular Activities
@@ -160,7 +160,7 @@ export const FACILITIES_DATA: FacilityItem[] = [
     description:
       'Regular martial arts instruction led by certified black-belt instructors, instilling mental discipline, self-defense awareness, physical endurance, and respect.',
     iconName: 'Activity',
-    image: 'https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=1200&q=80',
+    image: '',
     highlights: ['Certified belt grading system', 'Physical balance & flexibility', 'Discipline & mental focus', 'Inter-school competition opportunities'],
   },
   {
@@ -170,7 +170,7 @@ export const FACILITIES_DATA: FacilityItem[] = [
     description:
       'Dedicated dance training in classical, folk, and contemporary choreography that encourages rhythmic expression, poise, cultural appreciation, and stage confidence.',
     iconName: 'Music2',
-    image: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=1200&q=80',
+    image: '',
     highlights: ['Traditional Nepali and world dance forms', 'Stage presence & choreography', 'Annual Day public performances', 'Physical coordination & grace'],
   },
   {
@@ -180,7 +180,7 @@ export const FACILITIES_DATA: FacilityItem[] = [
     description:
       'A sunlit creative studio where children explore sketching, watercolor painting, clay modeling, origami, and mixed media under the guidance of passionate art mentors.',
     iconName: 'Palette',
-    image: 'https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?auto=format&fit=crop&w=1200&q=80',
+    image: '',
     highlights: ['Color theory & composition', 'Clay sculpting and craft design', 'Annual Student Art Exhibition', 'Mediums: acrylic, watercolor & sketching'],
   },
   {
@@ -190,7 +190,7 @@ export const FACILITIES_DATA: FacilityItem[] = [
     description:
       'Regulation-sized outdoor hard court with safety cushioning and adjustable hoops for skill development drills, intramural tournaments, and physical fitness.',
     iconName: 'Dribbble',
-    image: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1200&q=80',
+    image: '',
     highlights: ['Ball handling & shooting clinics', 'Inter-house league matches', 'Teamwork and athletic agility', 'Supervised after-school coaching'],
   },
   {
@@ -200,7 +200,7 @@ export const FACILITIES_DATA: FacilityItem[] = [
     description:
       'Enclosed all-weather sports turf supporting futsal training, football matches, team drills, and general athletic development in a safe, monitored setting.',
     iconName: 'CircleDot',
-    image: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1200&q=80',
+    image: '',
     highlights: ['All-weather artificial turf surface', 'Footwork and tactical drills', 'Sportsmanship and peer camaraderie', 'Intramural tournament series'],
   },
   {
@@ -210,7 +210,7 @@ export const FACILITIES_DATA: FacilityItem[] = [
     description:
       'Equipped practice room with keyboards, guitar, traditional instruments, and percussion where students learn pitch, rhythm, vocal harmony, and ensemble coordination.',
     iconName: 'Mic',
-    image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1200&q=80',
+    image: '',
     highlights: ['Instrumental & vocal instruction', 'Ear training & rhythmic theory', 'School choir & musical ensembles', 'Cultural event showcases'],
   },
   // Early Years
@@ -356,42 +356,42 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
     id: 'g-7',
     title: 'Outdoor Basketball Drill',
     category: 'Sports',
-    image: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1200&q=80',
+    image: '',
     caption: 'Developing agility, ball control, and strong team communication on the court.',
   },
   {
     id: 'g-8',
     title: 'Traditional Cultural Dance',
     category: 'Arts & Culture',
-    image: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=1200&q=80',
+    image: '',
     caption: 'Preserving Nepali cultural heritage through classical stage dance and performance.',
   },
   {
     id: 'g-9',
     title: 'Computer Science Practical',
     category: 'Classroom',
-    image: 'https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?auto=format&fit=crop&w=1200&q=80',
+    image: '',
     caption: 'Developing digital competence, logical algorithm design, and safe digital practices.',
   },
   {
     id: 'g-10',
     title: 'Joyful Play in Early Years',
     category: 'Pre-School',
-    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=80',
+    image: '',
     caption: 'Social-emotional development nurtured through structured group play and storytelling.',
   },
   {
     id: 'g-11',
     title: 'Annual Sports Athletics Meet',
     category: 'Events',
-    image: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1200&q=80',
+    image: '',
     caption: 'The competitive yet cheerful camaraderie of the Annual Sports Day at our Gothatar campus.',
   },
   {
     id: 'g-12',
     title: 'School Music & Ensemble Practice',
     category: 'Arts & Culture',
-    image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1200&q=80',
+    image: '',
     caption: 'Learning rhythm, harmony, and instrumental discipline in our music studio.',
   },
 ];

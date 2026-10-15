@@ -12,8 +12,6 @@ import {
   CHAIRMAN_INFO,
   WHY_CHOOSE_ITEMS,
   FACILITIES_DATA,
-  EVENTS_DATA,
-  GALLERY_PHOTOS,
 } from '../data/schoolData';
 
 import {
@@ -41,6 +39,8 @@ import {
 } from 'lucide-react';
 
 interface HomeViewProps {
+  events: EventItem[];
+  photos: GalleryPhoto[];
   onNavigate: (page: PageId) => void;
   onSelectEvent: (event: EventItem) => void;
   onSelectPhoto: (photo: GalleryPhoto) => void;
@@ -48,6 +48,8 @@ interface HomeViewProps {
 
 export const HomeView: React.FC<HomeViewProps> = ({
   onNavigate,
+  events,
+  photos,
   onSelectEvent,
   onSelectPhoto,
 }) => {
@@ -60,8 +62,8 @@ export const HomeView: React.FC<HomeViewProps> = ({
     Building2: <Building2 className="w-5 h-5 text-[#164287]" />,
   };
 
-  const featuredEvents = EVENTS_DATA.slice(0, 3);
-  const homepageGallery = GALLERY_PHOTOS.slice(0, 6);
+  const featuredEvents = events.slice(0, 3);
+  const homepageGallery = photos.slice(0, 6);
 
   return (
     <div className="w-full">
@@ -802,7 +804,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             <div className="lg:col-span-6 grid grid-cols-2 gap-4">
               <div className="aspect-4/5 rounded overflow-hidden border border-slate-200 shadow-xs bg-slate-100">
                 <img
-                  src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=800&q=80"
+                  src=""
                   alt="Young children engaged in sensory learning at Vaidik Pre-School Wing"
                   className="w-full h-full object-cover"
                 />
@@ -810,7 +812,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
               <div className="aspect-4/5 rounded overflow-hidden border border-slate-200 shadow-xs bg-slate-100 mt-6">
                 <img
-                  src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80"
+                  src=""
                   alt="Classroom play and discovery at Vaidik Pre-School"
                   className="w-full h-full object-cover"
                 />

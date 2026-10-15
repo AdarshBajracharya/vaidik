@@ -4,7 +4,8 @@ import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { EventModal } from './components/EventModal';
 import { Lightbox } from './components/Lightbox';
-import { GALLERY_PHOTOS } from './data/schoolData';
+import { schoolApi } from './lib/api';
+import { AdminPanel } from './views/AdminPanel';
 
 // Page Views
 import { HomeView } from './views/HomeView';
@@ -22,6 +23,16 @@ import {ChairmanView} from './views/ChairmanView';
 import { X } from 'lucide-react';
 
 export default function App() {
+  const [events,setEvents] = useState<EventItem[]>([]);
+  const [photos,setPhotos] = useState<GalleryPhoto[]>([]);
+  const [contentError,setContentError] = useState('');
+  const [loadingContent,setLoadingContent] = useState(true);
+  useEffect(()=>{
+    Promise.all([schoolApi.events(),schoolApi.gallery()])
+      .then(([e,g])=>{setEvents(e);setPhotos(g);})
+      .catch(err=>setContentError(err.message))
+      .finally(()=>setLoadingContent(false));
+  },[]);
   const [currentPage, setCurrentPage] = useState<PageId>('home');
   const [selectedEvent, setSelectedEvent] = useState<EventItem | null>(null);
   const [selectedPhoto, setSelectedPhoto] = useState<GalleryPhoto | null>(null);
@@ -51,6 +62,8 @@ export default function App() {
       case 'home':
         return (
           <HomeView
+            events={events}
+            photos={photos}
             onNavigate={handleNavigate}
             onSelectEvent={(event) => setSelectedEvent(event)}
             onSelectPhoto={(photo) => setSelectedPhoto(photo)}
@@ -84,9 +97,9 @@ export default function App() {
           />
         );
       case 'events':
-        return <EventsView onSelectEvent={(event) => setSelectedEvent(event)} />;
+        return <EventsView events={events} onSelectEvent={(event) => setSelectedEvent(event)} />;
       case 'gallery':
-        return <GalleryView onSelectPhoto={(photo) => setSelectedPhoto(photo)} />;
+        return <GalleryView photos={photos} onSelectPhoto={(photo) => setSelectedPhoto(photo)} />;
       case 'admissions':
         return <AdmissionsView onNavigate={handleNavigate} />;
       case 'contact':
@@ -94,6 +107,8 @@ export default function App() {
       default:
         return (
           <HomeView
+            events={events}
+            photos={photos}
             onNavigate={handleNavigate}
             onSelectEvent={(event) => setSelectedEvent(event)}
             onSelectPhoto={(photo) => setSelectedPhoto(photo)}
@@ -101,6 +116,8 @@ export default function App() {
         );
     }
   };
+
+  if (window.location.pathname.replace(/\/$/,'') === '/admin') return <AdminPanel />;
 
   return (
     <div className="min-h-screen flex flex-col bg-white text-slate-800 font-sans selection:bg-[#164287] selection:text-white antialiased">
@@ -111,6 +128,8 @@ export default function App() {
         onOpenEnquiry={handleOpenEnquiry}
       />
 
+      {contentError && <div role="alert" className="text-center p-3 bg-red-50 text-red-700">Unable to load events and gallery: {contentError}</div>}
+      {loadingContent && <div className="text-center text-sm py-2 bg-slate-50">Loading school updates…</div>}
       {/* Main Content Area */}
       <main className="flex-1">
         {renderView()}
@@ -131,7 +150,7 @@ export default function App() {
       {/* Image Lightbox for Gallery */}
       <Lightbox
         photo={selectedPhoto}
-        photos={GALLERY_PHOTOS}
+        photos={photos}
         onClose={() => setSelectedPhoto(null)}
         onSelectPhoto={(photo) => setSelectedPhoto(photo)}
       />

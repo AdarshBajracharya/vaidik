@@ -2,20 +2,20 @@ import React, { useState } from 'react';
 import { EventItem } from '../types';
 import { SectionHeader } from '../components/SectionHeader';
 import { EventCard } from '../components/EventCard';
-import { EVENTS_DATA } from '../data/schoolData';
 import { Calendar, Filter, Search } from 'lucide-react';
 
 interface EventsViewProps {
+  events: EventItem[];
   onSelectEvent: (event: EventItem) => void;
 }
 
-export const EventsView: React.FC<EventsViewProps> = ({ onSelectEvent }) => {
+export const EventsView: React.FC<EventsViewProps> = ({ events, onSelectEvent }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState('');
 
   const categories = ['All', 'Academic', 'Sports', 'Cultural', 'Activities'];
 
-  const filteredEvents = EVENTS_DATA.filter((event) => {
+  const filteredEvents = events.filter((event) => {
     const matchesCategory = selectedCategory === 'All' || event.category === selectedCategory;
     const matchesSearch =
       event.title.toLowerCase().includes(searchQuery.toLowerCase()) ||

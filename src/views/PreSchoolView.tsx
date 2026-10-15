@@ -15,7 +15,7 @@ export const PreSchoolView: React.FC<PreSchoolViewProps> = ({ onNavigate, onOpen
       <section className="bg-slate-900 text-white py-16 md:py-20 relative overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-20">
           <img
-            src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=1600&q=80"
+            src=""
             alt="Pre-school classroom"
             className="w-full h-full object-cover"
           />
@@ -62,7 +62,7 @@ export const PreSchoolView: React.FC<PreSchoolViewProps> = ({ onNavigate, onOpen
             <div className="lg:col-span-5">
               <div className="aspect-4/3 rounded-sm overflow-hidden border border-slate-200 shadow-sm bg-slate-100">
                 <img
-                  src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1000&q=80"
+                  src=""
                   alt="Pre-school children engaged in collaborative play"
                   className="w-full h-full object-cover"
                 />
@@ -124,7 +124,7 @@ export const PreSchoolView: React.FC<PreSchoolViewProps> = ({ onNavigate, onOpen
             <div className="lg:col-span-5 order-2 lg:order-1">
               <div className="aspect-4/3 rounded-sm overflow-hidden border border-slate-200 shadow-sm bg-slate-100">
                 <img
-                  src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=1000&q=80"
+                  src=""
                   alt="Child-safe indoor learning environment"
                   className="w-full h-full object-cover"
                 />
