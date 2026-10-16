@@ -64,15 +64,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               {SCHOOL_INFO.email}
             </span>
           </div>
-          <div className="flex items-center gap-4 text-xs">
-            <span className="text-slate-400">Office Hours: {SCHOOL_INFO.officeHours}</span>
-            <button
-              onClick={() => handleNavClick('principal')}
-              className="text-xs hover:text-white transition-colors cursor-pointer pl-2 border-l border-slate-700"
-            >
-              Principal's Desk
-            </button>
-          </div>
         </div>
       </div>
 
