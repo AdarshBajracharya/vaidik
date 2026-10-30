@@ -1,6 +1,11 @@
 import type { EventItem, GalleryPhoto } from '../types';
 
-const BASE = (import.meta.env.VITE_API_URL || '/api/v1').replace(/\/$/, '');
+
+const BASE = (
+  import.meta.env.VITE_API_URL ||
+  'https://back.vaidikvidyapeeth.edu.np/api/v1'
+).replace(/\/+$/, '');
+
 
 export type Managed<T> = T & {
   isPublished?: boolean | number;
