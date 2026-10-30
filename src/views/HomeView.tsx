@@ -977,9 +977,6 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
                     <span>{SCHOOL_INFO.email}</span>
 
-                    <span className="block text-slate-500 text-xs">
-                      {SCHOOL_INFO.admissionsEmail}
-                    </span>
                   </div>
                 </div>
 
