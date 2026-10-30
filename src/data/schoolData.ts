@@ -7,8 +7,8 @@ export const SCHOOL_INFO = {
   fullAddress: 'Gothatar, Kageshwori Manohara Municipality, Kathmandu, Nepal',
   phone: '+977-9860112013',
   secondaryPhone: '+977-985-1181927',
-  email: 'info@vaidikVidyapeeth.edu.np',
-  admissionsEmail: 'admissions@vaidikVidyapeeth.edu.np',
+  email: 'vaidikvidhypeeth@gmail.com',
+  // admissionsEmail: 'admissions@vaidikVidyapeeth.edu.np',
   officeHours: 'Sunday – Friday: 8:30 AM – 4:30 PM (Saturday Closed)',
   academicLevels: 'Pre-School through Secondary Level',
   mapCoordinates: {
