@@ -803,7 +803,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             <div className="lg:col-span-6 grid grid-cols-2 gap-4">
               <div className="aspect-4/5 rounded overflow-hidden border border-slate-200 shadow-xs bg-slate-100">
                 <img
-                  src=""
+                  src="eurostar.jpg"
                   alt="Young children engaged in sensory learning at Vaidik Pre-School Wing"
                   className="w-full h-full object-cover"
                 />
@@ -811,7 +811,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
               <div className="aspect-4/5 rounded overflow-hidden border border-slate-200 shadow-xs bg-slate-100 mt-6">
                 <img
-                  src=""
+                  src="euro.jpg"
                   alt="Classroom play and discovery at Vaidik Pre-School"
                   className="w-full h-full object-cover"
                 />
