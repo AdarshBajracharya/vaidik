@@ -208,16 +208,6 @@ export const PreSchoolView: React.FC<PreSchoolViewProps> = ({ onNavigate, onOpen
               <p className="text-xs text-slate-600">Interactive folklore, moral parables, and picture exploration.</p>
             </div>
           </div>
-
-          <div className="mt-12 text-center">
-            <button
-              onClick={onOpenEnquiry}
-              className="inline-flex items-center gap-2 px-7 py-3 rounded bg-[#164287] text-white text-sm font-medium hover:bg-[#0f2e60] transition-colors cursor-pointer"
-            >
-              <span>Enquire for Pre-School Admission (Playgroup – UKG)</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
         </div>
       </section>
     </div>

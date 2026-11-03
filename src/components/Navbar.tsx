@@ -105,35 +105,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               );
             })}
           </nav>
-
-          {/* Right Action */}
-          <div className="hidden lg:flex items-center gap-3">
-            <button
-              id="header-enquire-cta"
-              onClick={onOpenEnquiry}
-              className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium rounded-md bg-[#164287] text-white hover:bg-[#0f2e60] active:scale-[0.98] transition-all duration-200 shadow-sm border border-transparent cursor-pointer"
-            >
-              Enquire Now
-            </button>
-          </div>
-
-          {/* Mobile Hamburger Button */}
-          <div className="flex xl:hidden items-center gap-2">
-            <button
-              onClick={onOpenEnquiry}
-              className="px-3 py-1.5 text-xs font-medium rounded bg-[#164287] text-white cursor-pointer sm:hidden"
-            >
-              Enquire
-            </button>
-            <button
-              id="mobile-menu-trigger"
-              onClick={() => setIsMobileMenuOpen(true)}
-              className="p-2.5 rounded-md text-slate-700 hover:text-[#164287] hover:bg-slate-100 transition-colors cursor-pointer"
-              aria-label="Open Navigation Drawer"
-            >
-              <Menu className="w-6 h-6" />
-            </button>
-          </div>
         </div>
       </header>
 
@@ -209,19 +180,6 @@ export const Navbar: React.FC<NavbarProps> = ({
                 </button>
               </nav>
 
-              {/* Drawer CTA */}
-              <div className="mt-6 pt-4 border-t border-slate-100">
-                <button
-                  id="drawer-enquire-btn"
-                  onClick={() => {
-                    setIsMobileMenuOpen(false);
-                    onOpenEnquiry();
-                  }}
-                  className="w-full py-3 px-4 text-center rounded-md bg-[#164287] text-white font-medium text-sm hover:bg-[#0f2e60] transition-colors shadow-sm cursor-pointer"
-                >
-                  Enquire Now
-                </button>
-              </div>
             </div>
 
             {/* Basic School Contact Information at bottom */}
