@@ -28,7 +28,7 @@ export const GoogleMapSection: React.FC = () => {
           </div>
 
           <div>
-            <h4 className="font-serif font-bold text-slate-900 text-base">
+            <h4 className="font-serif font-bold text-blue-900 text-base">
               Vaidik Vidyapeeth School
             </h4>
 

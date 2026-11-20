@@ -12,24 +12,92 @@ export const AcademicsView: React.FC<AcademicsViewProps> = ({ onNavigate, onOpen
   return (
     <div className="w-full bg-white">
       {/* Page Header */}
-      <section className="bg-slate-900 text-white py-16 md:py-20 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 mb-3">
-              <span className="w-5 h-[2px] bg-[#d91f26]" />
-              <span className="text-xs font-semibold uppercase tracking-wider text-red-400">
-                Scholastic Philosophy
-              </span>
+
+
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#f4f8ff] via-white to-[#eaf2ff] border-b border-blue-100">
+        {/* Soft background decoration */}
+        <div className="absolute -top-24 -right-16 w-72 h-72 rounded-full bg-blue-100/40 blur-3xl pointer-events-none" />
+
+        <div className="absolute -bottom-24 -left-16 w-64 h-64 rounded-full bg-red-50/60 blur-3xl pointer-events-none" />
+
+        {/* Subtle grid */}
+        <div
+          className="absolute inset-0 opacity-[0.03] pointer-events-none"
+          style={{
+            backgroundImage:
+              "linear-gradient(#164287 1px, transparent 1px), linear-gradient(90deg, #164287 1px, transparent 1px)",
+            backgroundSize: "45px 45px",
+          }}
+        />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+
+            {/* LEFT: Heading and description */}
+            <div className="lg:col-span-7">
+              <div className="inline-flex items-center gap-3 mb-4">
+                <span className="w-6 h-[2px] bg-[#d91f26]" />
+
+                <span className="text-xs font-bold uppercase tracking-[0.15em] text-[#164287]">
+                  Scholastic Philosophy
+                </span>
+              </div>
+
+              <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight text-[#164287]">
+                Our Academic
+                <span className="block mt-1 text-[#c62828]">
+                  Approach
+                </span>
+              </h1>
+
+              <p className="mt-5 text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl">
+                At Vaidik Vidyapeeth, academic progress is anchored in
+                intellectual rigor, active student engagement,
+                foundational understanding, and positive discipline.
+              </p>
+
+              <div className="mt-6 flex items-center gap-2">
+                <span className="h-1 w-10 rounded-full bg-[#164287]" />
+                <span className="h-1 w-5 rounded-full bg-[#d91f26]" />
+              </div>
             </div>
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight">
-              Our Academic Approach
-            </h1>
-            <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
-              At Vaidik Vidyapeeth, academic progress is anchored in intellectual rigor, active student engagement, foundational understanding, and positive discipline.
-            </p>
+
+            {/* RIGHT: Academic highlights */}
+            <div className="hidden lg:flex lg:col-span-5 justify-end">
+              <div className="w-full max-w-sm rounded-2xl border border-blue-100 bg-white/75 p-7 shadow-sm backdrop-blur-sm">
+
+                <p className="text-xs font-bold uppercase tracking-[0.15em] text-[#c62828] mb-5">
+                  Our Learning Principles
+                </p>
+
+                {[
+                  "Strong Academic Foundations",
+                  "Active Student Engagement",
+                  "Creativity & Critical Thinking",
+                  "Positive Discipline",
+                ].map((item, index) => (
+                  <div
+                    key={item}
+                    className={`flex items-center gap-4 py-3 ${index !== 3 ? "border-b border-slate-100" : ""
+                      }`}
+                  >
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-blue-50 font-semibold text-sm text-[#164287]">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+
+                    <span className="text-sm font-medium text-slate-700">
+                      {item}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
+
+
 
       {/* Section 1: Learning With Purpose */}
       <section className="py-16 md:py-20 bg-white">
@@ -87,7 +155,7 @@ export const AcademicsView: React.FC<AcademicsViewProps> = ({ onNavigate, onOpen
               <div className="w-10 h-10 rounded bg-blue-50 text-[#164287] flex items-center justify-center font-bold">
                 01
               </div>
-              <h3 className="font-serif font-bold text-lg text-slate-900">Critical Thinking</h3>
+              <h3 className="font-serif font-bold text-lg text-blue-900">Critical Thinking</h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                 Analyzing evidence objectively, questioning assumptions, and synthesizing logical arguments.
               </p>
@@ -97,7 +165,7 @@ export const AcademicsView: React.FC<AcademicsViewProps> = ({ onNavigate, onOpen
               <div className="w-10 h-10 rounded bg-red-50 text-[#d91f26] flex items-center justify-center font-bold">
                 02
               </div>
-              <h3 className="font-serif font-bold text-lg text-slate-900">Communication & Poise</h3>
+              <h3 className="font-serif font-bold text-lg text-blue-900">Communication & Poise</h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                 Articulating thoughts persuasively in both written prose and spoken presentations.
               </p>
@@ -107,7 +175,7 @@ export const AcademicsView: React.FC<AcademicsViewProps> = ({ onNavigate, onOpen
               <div className="w-10 h-10 rounded bg-blue-50 text-[#164287] flex items-center justify-center font-bold">
                 03
               </div>
-              <h3 className="font-serif font-bold text-lg text-slate-900">Confidence & Resilience</h3>
+              <h3 className="font-serif font-bold text-lg text-blue-900">Confidence & Resilience</h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                 Embracing challenges, learning with humility from mistakes, and striving for steady self-improvement.
               </p>
@@ -117,7 +185,7 @@ export const AcademicsView: React.FC<AcademicsViewProps> = ({ onNavigate, onOpen
               <div className="w-10 h-10 rounded bg-red-50 text-[#d91f26] flex items-center justify-center font-bold">
                 04
               </div>
-              <h3 className="font-serif font-bold text-lg text-slate-900">Discipline & Integrity</h3>
+              <h3 className="font-serif font-bold text-lg text-blue-900">Discipline & Integrity</h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                 Respecting institutional codes, maintaining punctuality, and honoring ethical principles in all pursuits.
               </p>
@@ -147,25 +215,25 @@ export const AcademicsView: React.FC<AcademicsViewProps> = ({ onNavigate, onOpen
 
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="border border-slate-200 p-6 rounded-sm space-y-2">
-              <h4 className="font-serif font-bold text-base text-slate-900">Continuous Assessment</h4>
+              <h4 className="font-serif font-bold text-base text-blue-900">Continuous Assessment</h4>
               <p className="text-xs text-slate-600 leading-relaxed">
                 Regular formative feedback through quizzes, projects, and classroom presentations alongside formal term evaluations.
               </p>
             </div>
             <div className="border border-slate-200 p-6 rounded-sm space-y-2">
-              <h4 className="font-serif font-bold text-base text-slate-900">Remedial Mentorship</h4>
+              <h4 className="font-serif font-bold text-base text-blue-900">Remedial Mentorship</h4>
               <p className="text-xs text-slate-600 leading-relaxed">
                 Dedicated extra support sessions for students requiring reinforcement in foundational mathematics and language mechanics.
               </p>
             </div>
             <div className="border border-slate-200 p-6 rounded-sm space-y-2">
-              <h4 className="font-serif font-bold text-base text-slate-900">Regular Parent Dialogues</h4>
+              <h4 className="font-serif font-bold text-base text-blue-900">Regular Parent Dialogues</h4>
               <p className="text-xs text-slate-600 leading-relaxed">
                 Transparent parent-teacher meetings to review progress reports and coordinate home-school learning alignment.
               </p>
             </div>
           </div>
-     
+
         </div>
       </section>
     </div>

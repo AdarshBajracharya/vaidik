@@ -49,7 +49,7 @@ export const EventCard: React.FC<EventCardProps> = ({ event, onReadMore }) => {
             )}
           </div>
 
-          <h3 className="font-serif text-lg font-bold text-slate-900 leading-snug mb-2 hover:text-[#164287] transition-colors">
+          <h3 className="font-serif text-lg font-bold text-blue-900 leading-snug mb-2 hover:text-[#164287] transition-colors">
             {event.title}
           </h3>
 

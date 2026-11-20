@@ -45,7 +45,7 @@ export const AdmissionsView: React.FC<AdmissionsViewProps> = ({ onNavigate }) =>
   return (
     <div className="w-full bg-white">
       {/* Header Banner */}
-      <section className="bg-slate-900 text-white py-16 md:py-20 relative overflow-hidden">
+      <section className="bg-blue-900 text-white py-16 md:py-20 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 mb-3">
@@ -79,7 +79,7 @@ export const AdmissionsView: React.FC<AdmissionsViewProps> = ({ onNavigate }) =>
                 <span className="text-2xl font-serif font-bold text-[#164287]">
                   {s.step}
                 </span>
-                <h3 className="font-serif font-bold text-lg text-slate-900">
+                <h3 className="font-serif font-bold text-lg text-blue-900">
                   {s.title}
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">

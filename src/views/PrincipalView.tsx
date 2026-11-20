@@ -12,7 +12,7 @@ export const PrincipalView: React.FC<PrincipalViewProps> = ({ onNavigate }) => {
   return (
     <div className="w-full bg-white">
       {/* Editorial Banner */}
-      <section className="bg-slate-900 text-white py-16 md:py-20 relative overflow-hidden">
+      <section className="bg-blue-900 text-white py-16 md:py-20 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 mb-3">
@@ -44,7 +44,7 @@ export const PrincipalView: React.FC<PrincipalViewProps> = ({ onNavigate }) => {
                 </div>
 
                 <div className="border-b border-slate-200 pb-4">
-                  <h3 className="font-serif font-bold text-xl text-slate-900">
+                  <h3 className="font-serif font-bold text-xl text-blue-900">
                     {PRINCIPAL_INFO.name}
                   </h3>
                   <p className="text-sm font-medium text-[#164287]">
@@ -83,7 +83,7 @@ export const PrincipalView: React.FC<PrincipalViewProps> = ({ onNavigate }) => {
               ))}
 
               <div className="pt-8 mt-8 border-t border-slate-200">
-                <p className="font-serif text-slate-900 font-bold text-lg">With warm regards,</p>
+                <p className="font-serif text-blue-900 font-bold text-lg">With warm regards,</p>
                 <div className="mt-4 font-serif text-2xl text-[#164287] italic tracking-wide">
                   {PRINCIPAL_INFO.name}
                 </div>

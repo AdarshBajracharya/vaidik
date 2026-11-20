@@ -14,7 +14,7 @@ export const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs transition-opacity"
+        className="fixed inset-0 bg-blue-900/60 backdrop-blur-xs transition-opacity"
         onClick={onClose}
         aria-hidden="true"
       />
@@ -27,7 +27,7 @@ export const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-20 p-2 rounded-full bg-white/90 text-slate-700 hover:bg-white hover:text-slate-900 shadow-sm transition-colors cursor-pointer"
+          className="absolute top-4 right-4 z-20 p-2 rounded-full bg-white/90 text-slate-700 hover:bg-white hover:text-blue-900 shadow-sm transition-colors cursor-pointer"
           aria-label="Close modal"
         >
           <X className="w-5 h-5" />
@@ -69,7 +69,7 @@ export const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
               )}
             </div>
 
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900 leading-tight">
+            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-blue-900 leading-tight">
               {event.title}
             </h2>
           </div>

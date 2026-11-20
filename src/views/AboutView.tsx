@@ -1,9 +1,6 @@
 import React from 'react';
-
 import { PageId } from '../types';
-
 import { SectionHeader } from '../components/SectionHeader';
-
 import { PRINCIPAL_INFO, WHY_CHOOSE_ITEMS, SCHOOL_INFO } from '../data/schoolData';
 
 import {
@@ -25,7 +22,7 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate }) => {
     <div className="w-full">
 
       {/* Page Banner */}
-      <section className="bg-slate-900 text-white py-16 md:py-20 relative overflow-hidden">
+      <section className="bg-blue-900 text-white py-16 md:py-20 relative overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-25">
           <img
             src="vaidik.jpg"
@@ -50,7 +47,7 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate }) => {
             </h1>
 
             <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
-              Located in Gothatar, Kathmandu, Vaidik Vidyapeeth is dedicated
+              Located at Gothatar, Kathmandu, Vaidik Vidyapeeth is dedicated
               to fostering intellectual clarity, emotional maturity, and civic
               responsibility through balanced schooling.
             </p>
@@ -182,7 +179,7 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate }) => {
             <div className="p-6 border border-slate-200 rounded-sm bg-white space-y-2">
               <span className="w-2.5 h-2.5 rounded-full bg-[#164287] inline-block" />
 
-              <h4 className="font-serif font-bold text-lg text-slate-900">
+              <h4 className="font-serif font-bold text-lg text-blue-900">
                 Excellence
               </h4>
 
@@ -196,7 +193,7 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate }) => {
             <div className="p-6 border border-slate-200 rounded-sm bg-white space-y-2">
               <span className="w-2.5 h-2.5 rounded-full bg-[#d91f26] inline-block" />
 
-              <h4 className="font-serif font-bold text-lg text-slate-900">
+              <h4 className="font-serif font-bold text-lg text-blue-900">
                 Integrity
               </h4>
 
@@ -210,7 +207,7 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate }) => {
             <div className="p-6 border border-slate-200 rounded-sm bg-white space-y-2">
               <span className="w-2.5 h-2.5 rounded-full bg-[#164287] inline-block" />
 
-              <h4 className="font-serif font-bold text-lg text-slate-900">
+              <h4 className="font-serif font-bold text-lg text-blue-900">
                 Respect
               </h4>
 
@@ -224,7 +221,7 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate }) => {
             <div className="p-6 border border-slate-200 rounded-sm bg-white space-y-2">
               <span className="w-2.5 h-2.5 rounded-full bg-[#d91f26] inline-block" />
 
-              <h4 className="font-serif font-bold text-lg text-slate-900">
+              <h4 className="font-serif font-bold text-lg text-blue-900">
                 Innovation
               </h4>
 
@@ -238,7 +235,7 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate }) => {
             <div className="p-6 border border-slate-200 rounded-sm bg-white space-y-2">
               <span className="w-2.5 h-2.5 rounded-full bg-[#164287] inline-block" />
 
-              <h4 className="font-serif font-bold text-lg text-slate-900">
+              <h4 className="font-serif font-bold text-lg text-blue-900">
                 Responsibility
               </h4>
 
@@ -252,7 +249,7 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate }) => {
             <div className="p-6 border border-slate-200 rounded-sm bg-white space-y-2">
               <span className="w-2.5 h-2.5 rounded-full bg-[#d91f26] inline-block" />
 
-              <h4 className="font-serif font-bold text-lg text-slate-900">
+              <h4 className="font-serif font-bold text-lg text-blue-900">
                 Collaboration
               </h4>
 
@@ -266,7 +263,7 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigate }) => {
             <div className="p-6 border border-slate-200 rounded-sm bg-white space-y-2">
               <span className="w-2.5 h-2.5 rounded-full bg-[#164287] inline-block" />
 
-              <h4 className="font-serif font-bold text-lg text-slate-900">
+              <h4 className="font-serif font-bold text-lg text-blue-900">
                 Lifelong Learning Environment
               </h4>
 

@@ -33,7 +33,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'academics', label: 'Academics' },
     { id: 'events', label: 'Events' },
     { id: 'gallery', label: 'Gallery' },
-    { id: 'admissions', label: 'Admissions' },
+    // { id: 'admissions', label: 'Admissions' },
     { id: 'contact', label: 'Contact' },
   ];
 
@@ -69,9 +69,8 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Main Sticky Navbar */}
       <header
-        className={`sticky top-0 z-40 bg-white transition-shadow duration-300 ${
-          isScrolled ? 'shadow-md border-b border-slate-200' : 'border-b border-slate-100'
-        }`}
+        className={`sticky top-0 z-40 bg-white transition-shadow duration-300 ${isScrolled ? 'shadow-md border-b border-slate-200' : 'border-b border-slate-100'
+          }`}
         id="main-navigation"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
@@ -91,11 +90,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                   key={link.id}
                   id={`nav-link-${link.id}`}
                   onClick={() => handleNavClick(link.id)}
-                  className={`relative py-2 text-sm font-medium transition-colors cursor-pointer ${
-                    isActive
+                  className={`relative py-2 text-sm font-medium transition-colors cursor-pointer ${isActive
                       ? 'text-[#164287] font-semibold'
                       : 'text-slate-700 hover:text-[#164287]'
-                  }`}
+                    }`}
                 >
                   {link.label}
                   {isActive && (
@@ -113,7 +111,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="fixed inset-0 z-50 xl:hidden flex">
           {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs transition-opacity duration-300"
+            className="fixed inset-0 bg-blue-900/60 backdrop-blur-xs transition-opacity duration-300"
             onClick={() => setIsMobileMenuOpen(false)}
             aria-hidden="true"
           />
@@ -145,11 +143,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <button
                       key={link.id}
                       onClick={() => handleNavClick(link.id)}
-                      className={`flex items-center justify-between w-full px-4 py-3 text-left text-sm font-medium rounded-md transition-colors cursor-pointer ${
-                        isActive
+                      className={`flex items-center justify-between w-full px-4 py-3 text-left text-sm font-medium rounded-md transition-colors cursor-pointer ${isActive
                           ? 'bg-blue-50/80 text-[#164287] font-semibold border-l-3 border-[#d91f26]'
                           : 'text-slate-700 hover:bg-slate-50 hover:text-[#164287]'
-                      }`}
+                        }`}
                     >
                       <span>{link.label}</span>
                       {isActive && <span className="w-1.5 h-1.5 rounded-full bg-[#d91f26]" />}
@@ -159,22 +156,20 @@ export const Navbar: React.FC<NavbarProps> = ({
 
                 <button
                   onClick={() => handleNavClick('principal')}
-                  className={`flex items-center justify-between w-full px-4 py-3 text-left text-sm font-medium rounded-md transition-colors cursor-pointer ${
-                    currentPage === 'principal'
+                  className={`flex items-center justify-between w-full px-4 py-3 text-left text-sm font-medium rounded-md transition-colors cursor-pointer ${currentPage === 'principal'
                       ? 'bg-blue-50/80 text-[#164287] font-semibold border-l-3 border-[#d91f26]'
                       : 'text-slate-700 hover:bg-slate-50 hover:text-[#164287]'
-                  }`}
+                    }`}
                 >
                   <span>Principal's Message</span>
                 </button>
 
                 <button
                   onClick={() => handleNavClick('preschool')}
-                  className={`flex items-center justify-between w-full px-4 py-3 text-left text-sm font-medium rounded-md transition-colors cursor-pointer ${
-                    currentPage === 'preschool'
+                  className={`flex items-center justify-between w-full px-4 py-3 text-left text-sm font-medium rounded-md transition-colors cursor-pointer ${currentPage === 'preschool'
                       ? 'bg-blue-50/80 text-[#164287] font-semibold border-l-3 border-[#d91f26]'
                       : 'text-slate-700 hover:bg-slate-50 hover:text-[#164287]'
-                  }`}
+                    }`}
                 >
                   <span>Pre-School Wing</span>
                 </button>

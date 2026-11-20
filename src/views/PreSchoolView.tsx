@@ -12,7 +12,7 @@ export const PreSchoolView: React.FC<PreSchoolViewProps> = ({ onNavigate, onOpen
   return (
     <div className="w-full bg-white">
       {/* Header */}
-      <section className="bg-slate-900 text-white py-16 md:py-20 relative overflow-hidden">
+      <section className="bg-blue-900 text-white py-16 md:py-20 relative overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-20">
           <img
             src=""
@@ -88,7 +88,7 @@ export const PreSchoolView: React.FC<PreSchoolViewProps> = ({ onNavigate, onOpen
               <div className="w-10 h-10 rounded bg-blue-50 text-[#164287] flex items-center justify-center">
                 <BookOpen className="w-5 h-5" />
               </div>
-              <h3 className="font-serif font-bold text-lg text-slate-900">Phonics & Early Literacy</h3>
+              <h3 className="font-serif font-bold text-lg text-blue-900">Phonics & Early Literacy</h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                 Multisensory phonics, rhyming verses, and interactive picture-book reading that instill joyful phonemic awareness and conversational fluency.
               </p>
@@ -98,7 +98,7 @@ export const PreSchoolView: React.FC<PreSchoolViewProps> = ({ onNavigate, onOpen
               <div className="w-10 h-10 rounded bg-red-50 text-[#d91f26] flex items-center justify-center">
                 <Sparkles className="w-5 h-5" />
               </div>
-              <h3 className="font-serif font-bold text-lg text-slate-900">Numeracy & Spatial Sense</h3>
+              <h3 className="font-serif font-bold text-lg text-blue-900">Numeracy & Spatial Sense</h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                 Concrete tactile manipulatives—blocks, beads, sorting puzzles—that build an intuitive understanding of numbers, patterns, and geometric dimensions.
               </p>
@@ -108,7 +108,7 @@ export const PreSchoolView: React.FC<PreSchoolViewProps> = ({ onNavigate, onOpen
               <div className="w-10 h-10 rounded bg-blue-50 text-[#164287] flex items-center justify-center">
                 <Heart className="w-5 h-5" />
               </div>
-              <h3 className="font-serif font-bold text-lg text-slate-900">Social-Emotional Care</h3>
+              <h3 className="font-serif font-bold text-lg text-blue-900">Social-Emotional Care</h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                 Gentle routines that teach sharing, patience, empathetic conflict resolution, and self-help skills under affectionate adult supervision.
               </p>
@@ -180,7 +180,7 @@ export const PreSchoolView: React.FC<PreSchoolViewProps> = ({ onNavigate, onOpen
               <div className="w-10 h-10 rounded-full bg-blue-50 text-[#164287] mx-auto flex items-center justify-center">
                 <Palette className="w-5 h-5" />
               </div>
-              <h4 className="font-serif font-bold text-slate-900">Sensory Art & Craft</h4>
+              <h4 className="font-serif font-bold text-blue-900">Sensory Art & Craft</h4>
               <p className="text-xs text-slate-600">Finger painting, clay rolling, tear-and-paste collage work.</p>
             </div>
 
@@ -188,7 +188,7 @@ export const PreSchoolView: React.FC<PreSchoolViewProps> = ({ onNavigate, onOpen
               <div className="w-10 h-10 rounded-full bg-red-50 text-[#d91f26] mx-auto flex items-center justify-center">
                 <Music className="w-5 h-5" />
               </div>
-              <h4 className="font-serif font-bold text-slate-900">Rhythm & Rhymes</h4>
+              <h4 className="font-serif font-bold text-blue-900">Rhythm & Rhymes</h4>
               <p className="text-xs text-slate-600">Choral nursery chants, clapping games, and musical movement.</p>
             </div>
 
@@ -196,7 +196,7 @@ export const PreSchoolView: React.FC<PreSchoolViewProps> = ({ onNavigate, onOpen
               <div className="w-10 h-10 rounded-full bg-blue-50 text-[#164287] mx-auto flex items-center justify-center">
                 <Smile className="w-5 h-5" />
               </div>
-              <h4 className="font-serif font-bold text-slate-900">Outdoor Motor Play</h4>
+              <h4 className="font-serif font-bold text-blue-900">Outdoor Motor Play</h4>
               <p className="text-xs text-slate-600">Balancing beams, ball tossing, hopscotch, and obstacle tracks.</p>
             </div>
 
@@ -204,7 +204,7 @@ export const PreSchoolView: React.FC<PreSchoolViewProps> = ({ onNavigate, onOpen
               <div className="w-10 h-10 rounded-full bg-red-50 text-[#d91f26] mx-auto flex items-center justify-center">
                 <BookOpen className="w-5 h-5" />
               </div>
-              <h4 className="font-serif font-bold text-slate-900">Story Circle</h4>
+              <h4 className="font-serif font-bold text-blue-900">Story Circle</h4>
               <p className="text-xs text-slate-600">Interactive folklore, moral parables, and picture exploration.</p>
             </div>
           </div>

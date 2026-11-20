@@ -1,6 +1,5 @@
 
 import React, { useEffect, useState } from 'react';
-
 import {
   ArrowLeft,
   CalendarDays,
@@ -16,25 +15,20 @@ import {
   Upload,
   X,
 } from 'lucide-react';
-
 import { schoolApi, type Managed } from '../lib/api';
 import type { EventItem, GalleryPhoto } from '../types';
-
 type Kind = 'events' | 'gallery';
 type EditorId = string | number | null;
-
 type UploadedPhoto = {
   url: string;
   name: string;
 };
-
 const eventCategories = [
   'Academic',
   'Sports',
   'Cultural',
   'Activities',
 ];
-
 const photoCategories = [
   'Campus',
   'Classroom',
@@ -43,16 +37,12 @@ const photoCategories = [
   'Arts & Culture',
   'Pre-School',
 ];
-
 const input =
   'w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 outline-none focus:ring-2 focus:ring-[#164287]';
-
 const field =
   'mb-1 block text-sm font-semibold text-slate-700';
-
 const primaryButton =
   'inline-flex items-center gap-2 rounded-lg bg-[#164287] px-5 py-3 font-semibold text-white disabled:opacity-50';
-
 const blankEvent = () => ({
   title: '',
   date: new Date().toLocaleDateString('en-CA'),
@@ -65,7 +55,6 @@ const blankEvent = () => ({
   gallery: [] as string[],
   isPublished: true,
 });
-
 const blankPhoto = () => ({
   title: '',
   category: 'Campus',
@@ -74,67 +63,76 @@ const blankPhoto = () => ({
   sortOrder: 0,
   isPublished: true,
 });
+// Browser-side image preparation for hosting environments with small request-size limits.
+// Static JPG/PNG/WebP/GIF images over the limit become compressed JPEGs.
+// Animated GIFs over the limit are rejected to avoid silently discarding animation.
+const MAX_INPUT_BYTES = 20 * 1024 * 1024;
+const TARGET_BYTES = 650 * 1024;
+const ACCEPTED = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+const API_RAW = import.meta.env.VITE_API_URL || 'https://back.vaidikvidyapeeth.edu.np/api/v1';
+const API_BASE = API_RAW.replace(/\/+$/, '').endsWith('/api/v1')
+  ? API_RAW.replace(/\/+$/, '')
+  : `${API_RAW.replace(/\/+$/, '')}/api/v1`;
 
-const maxImageBytes = 20 * 1024 * 1024;
+function canvasBlob(canvas: HTMLCanvasElement, quality: number): Promise<Blob> {
+  return new Promise((resolve, reject) => {
+    canvas.toBlob((blob) => blob ? resolve(blob) : reject(new Error('Could not compress image.')), 'image/jpeg', quality);
+  });
+}
 
-const validImageTypes = [
-  'image/jpeg',
-  'image/png',
-  'image/webp',
-  'image/gif',
-];
+async function prepareImage(file: File): Promise<Blob> {
+  if (!ACCEPTED.includes(file.type)) throw new Error('Choose JPG, PNG, WebP or GIF.');
+  if (file.size > MAX_INPUT_BYTES) throw new Error('Image must be 20 MB or smaller.');
+  if (file.size <= TARGET_BYTES) return file;
+  if (file.type === 'image/gif') throw new Error('GIF is too large. Please compress the GIF below 650 KB before uploading.');
 
-const configuredApi = (
-  import.meta.env.VITE_API_URL ||
-  'https://back.vaidikvidyapeeth.edu.np/api/v1'
-).replace(/\/+$/, '');
-
-const apiBase = configuredApi.endsWith('/api/v1')
-  ? configuredApi
-  : `${configuredApi}/api/v1`;
-
-// ========================================
-// IMAGE UPLOAD FUNCTION
-// ========================================
+  const url = URL.createObjectURL(file);
+  try {
+    const img = new Image();
+    await new Promise<void>((resolve, reject) => {
+      img.onload = () => resolve();
+      img.onerror = () => reject(new Error('Unable to read image.'));
+      img.src = url;
+    });
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    if (!ctx) throw new Error('Image compression is not available.');
+    for (const maxSide of [1800, 1400, 1100, 900, 700, 500]) {
+      const ratio = Math.min(1, maxSide / Math.max(img.naturalWidth, img.naturalHeight));
+      canvas.width = Math.max(1, Math.round(img.naturalWidth * ratio));
+      canvas.height = Math.max(1, Math.round(img.naturalHeight * ratio));
+      // JPEG cannot preserve transparency; use white behind transparent images.
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      for (const quality of [0.82, 0.7, 0.58, 0.45]) {
+        const blob = await canvasBlob(canvas, quality);
+        if (blob.size <= TARGET_BYTES) return blob;
+      }
+    }
+    throw new Error('Image is still too large after compression. Please resize it before uploading.');
+  } finally {
+    URL.revokeObjectURL(url);
+  }
+}
 
 async function uploadImage(file: File): Promise<string> {
-  if (!validImageTypes.includes(file.type)) {
-    throw new Error(
-      'Choose a JPG, PNG, WebP, or GIF image.'
-    );
-  }
-
-  if (file.size > maxImageBytes) {
-    throw new Error(
-      `"${file.name}" is larger than 20 MB.`
-    );
-  }
-
-  const response = await fetch(`${apiBase}/uploads`, {
+  const prepared = await prepareImage(file);
+  const response = await fetch(`${API_BASE}/uploads`, {
     method: 'POST',
     credentials: 'include',
-    headers: {
-      'Content-Type': file.type,
-    },
-    body: file,
+    headers: { 'Content-Type': prepared.type },
+    body: prepared,
   });
-
-  const data = await response.json().catch(() => null);
-
-  if (!response.ok || !data?.url) {
-    throw new Error(
-      data?.message ||
-      'Image upload failed. Please sign in again and retry.'
-    );
-  }
-
-  return data.url as string;
+  const json = await response.json().catch(() => null);
+  if (response.status === 413) throw new Error('The hosting server rejected the upload size (413). Ask your host to raise the HTTP request body limit, or use a smaller image.');
+  if (!response.ok || !json?.url) throw new Error(json?.message || `Image upload failed (${response.status}).`);
+  return json.url as string;
 }
 
 // ========================================
 // REUSABLE UPLOAD COMPONENT
 // ========================================
-
 interface UploadFieldProps {
   label: string;
   required?: boolean;
@@ -142,7 +140,6 @@ interface UploadFieldProps {
   uploading: boolean;
   onFiles: (files: File[]) => Promise<void>;
 }
-
 const UploadField: React.FC<UploadFieldProps> = ({
   label,
   required = false,
@@ -155,7 +152,6 @@ const UploadField: React.FC<UploadFieldProps> = ({
       <label className={field}>
         {label} {required ? '*' : ''}
       </label>
-
       <label
         className={`
           flex cursor-pointer flex-col items-center gap-2
@@ -172,7 +168,6 @@ const UploadField: React.FC<UploadFieldProps> = ({
         ) : (
           <Upload size={23} />
         )}
-
         <span className="text-sm font-semibold">
           {uploading
             ? 'Uploading images...'
@@ -180,11 +175,9 @@ const UploadField: React.FC<UploadFieldProps> = ({
               ? 'Select one or more photos'
               : 'Choose image'}
         </span>
-
         <span className="text-xs text-slate-500">
-          JPG, PNG, WebP, GIF • Maximum 20 MB per image
+          JPG, PNG, WebP, GIF • Large static images automatically compressed
         </span>
-
         <input
           type="file"
           accept="image/jpeg,image/png,image/webp,image/gif"
@@ -195,9 +188,7 @@ const UploadField: React.FC<UploadFieldProps> = ({
             const files = Array.from(
               e.currentTarget.files || []
             );
-
             e.currentTarget.value = '';
-
             if (files.length > 0) {
               await onFiles(files);
             }
@@ -207,71 +198,54 @@ const UploadField: React.FC<UploadFieldProps> = ({
     </div>
   );
 };
-
 // ========================================
 // ADMIN PANEL
 // ========================================
-
 export const AdminPanel: React.FC = () => {
   const [signedIn, setSignedIn] = useState(false);
   const [checking, setChecking] = useState(true);
-
   const [password, setPassword] = useState('');
   const [tab, setTab] = useState<Kind>('events');
-
   const [events, setEvents] = useState<
     Managed<EventItem>[]
   >([]);
-
   const [photos, setPhotos] = useState<
     Managed<GalleryPhoto>[]
   >([]);
-
   const [editing, setEditing] = useState<EditorId>(null);
   const [showForm, setShowForm] = useState(false);
-
   const [event, setEvent] = useState(blankEvent());
   const [photo, setPhoto] = useState(blankPhoto());
-
   const [bulkPhotos, setBulkPhotos] = useState<
     UploadedPhoto[]
   >([]);
-
   const [busy, setBusy] = useState(false);
   const [uploading, setUploading] = useState(false);
-
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
-
   // ========================================
   // ERROR HANDLING
   // ========================================
-
   const showError = (err: unknown) => {
     setError(
       err instanceof Error
         ? err.message
         : 'Something went wrong.'
     );
-
     setMessage('');
   };
-
   // ========================================
   // LOAD EVENTS AND GALLERY
   // ========================================
-
   const load = async () => {
     const [loadedEvents, loadedPhotos] =
       await Promise.all([
         schoolApi.adminEvents(),
         schoolApi.adminGallery(),
       ]);
-
     setEvents(loadedEvents);
     setPhotos(loadedPhotos);
   };
-
   useEffect(() => {
     schoolApi
       .session()
@@ -286,27 +260,20 @@ export const AdminPanel: React.FC = () => {
         setChecking(false);
       });
   }, []);
-
   // ========================================
   // LOGIN
   // ========================================
-
   const login = async (e: React.FormEvent) => {
     e.preventDefault();
-
     setBusy(true);
     setError('');
-
     try {
       // Step 1: Authenticate using password
       await schoolApi.login(password);
-
       // Step 2: Verify the server recognizes the cookie
       await schoolApi.session();
-
       // Step 3: Load protected admin data
       await load();
-
       // Step 4: Show the admin panel only after success
       setSignedIn(true);
       setPassword('');
@@ -317,41 +284,32 @@ export const AdminPanel: React.FC = () => {
       setBusy(false);
     }
   };
-
-
   // ========================================
   // LOGOUT
   // ========================================
-
   const logout = async () => {
     try {
       await schoolApi.logout();
-
       setSignedIn(false);
       setShowForm(false);
     } catch (err) {
       showError(err);
     }
   };
-
   // ========================================
   // START ADD OR EDIT
   // ========================================
-
   const start = (
     item?: Managed<EventItem> | Managed<GalleryPhoto>
   ) => {
     setError('');
     setMessage('');
-
     setEditing(item?.id ?? null);
     setBulkPhotos([]);
-
     if (tab === 'events') {
       const current = item as
         | Managed<EventItem>
         | undefined;
-
       setEvent(
         current
           ? {
@@ -372,7 +330,6 @@ export const AdminPanel: React.FC = () => {
       const current = item as
         | Managed<GalleryPhoto>
         | undefined;
-
       setPhoto(
         current
           ? {
@@ -386,30 +343,24 @@ export const AdminPanel: React.FC = () => {
           : blankPhoto()
       );
     }
-
     setShowForm(true);
-
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
     });
   };
-
   // ========================================
   // UPLOAD IMAGES
   // ========================================
-
   const uploadFiles = async (
     files: File[],
     destination: 'cover' | 'eventGallery' | 'photo'
   ) => {
     setUploading(true);
     setError('');
-
     try {
       for (const file of files) {
         const url = await uploadImage(file);
-
         if (destination === 'cover') {
           setEvent((previous) => ({
             ...previous,
@@ -444,23 +395,14 @@ export const AdminPanel: React.FC = () => {
       setUploading(false);
     }
   };
-
   // ========================================
   // SAVE EVENT OR GALLERY
   // ========================================
-
   const save = async (e: React.FormEvent) => {
     e.preventDefault();
-
     if (uploading || busy) {
       return;
     }
-
-    if (tab === 'events' && !event.coverImage) {
-      setError('Please upload an event cover image.');
-      return;
-    }
-
     if (
       tab === 'gallery' &&
       (
@@ -472,15 +414,12 @@ export const AdminPanel: React.FC = () => {
       setError('Please upload a gallery photo.');
       return;
     }
-
     setBusy(true);
     setError('');
     setMessage('');
-
     try {
       if (tab === 'gallery' && editing === null) {
         let saved = 0;
-
         try {
           for (
             let index = 0;
@@ -488,12 +427,10 @@ export const AdminPanel: React.FC = () => {
             index += 1
           ) {
             const selected = bulkPhotos[index];
-
             const nameFromFile = selected.name
               .replace(/\.[^.]+$/, '')
               .replace(/[-_]+/g, ' ')
               .trim();
-
             await schoolApi.save('gallery', {
               ...photo,
               title:
@@ -506,16 +443,13 @@ export const AdminPanel: React.FC = () => {
                 photo.sortOrder + index
               ),
             });
-
             saved += 1;
           }
         } catch (err) {
           setBulkPhotos((previous) =>
             previous.slice(saved)
           );
-
           await load();
-
           throw new Error(
             `${saved} photo(s) saved; remaining photos were kept. ${err instanceof Error
               ? err.message
@@ -530,12 +464,9 @@ export const AdminPanel: React.FC = () => {
           editing ?? undefined
         );
       }
-
       await load();
-
       setShowForm(false);
       setBulkPhotos([]);
-
       setMessage(
         editing !== null
           ? 'Changes saved successfully.'
@@ -549,11 +480,9 @@ export const AdminPanel: React.FC = () => {
       setBusy(false);
     }
   };
-
   // ========================================
   // DELETE EVENT OR PHOTO
   // ========================================
-
   const remove = async (
     id: string | number
   ) => {
@@ -564,14 +493,11 @@ export const AdminPanel: React.FC = () => {
     ) {
       return;
     }
-
     setBusy(true);
     setError('');
-
     try {
       await schoolApi.remove(tab, id);
       await load();
-
       setMessage('Item deleted.');
     } catch (err) {
       showError(err);
@@ -579,14 +505,11 @@ export const AdminPanel: React.FC = () => {
       setBusy(false);
     }
   };
-
   const items =
     tab === 'events' ? events : photos;
-
   // ========================================
   // SESSION LOADING
   // ========================================
-
   if (checking) {
     return (
       <div className="grid min-h-screen place-content-center text-slate-600">
@@ -595,11 +518,9 @@ export const AdminPanel: React.FC = () => {
       </div>
     );
   }
-
   // ========================================
   // LOGIN PAGE
   // ========================================
-
   if (!signedIn) {
     return (
       <div className="grid min-h-screen place-items-center bg-slate-100 px-4">
@@ -610,22 +531,18 @@ export const AdminPanel: React.FC = () => {
           <div className="mb-5 grid h-14 w-14 place-items-center rounded-2xl bg-[#164287] text-2xl font-bold text-white">
             V
           </div>
-
           <h1 className="font-serif text-3xl font-bold">
             School Admin
           </h1>
-
           <p className="mb-7 mt-2 text-slate-500">
             Sign in to manage school events and photos.
           </p>
-
           <label
             htmlFor="admin-password"
             className={field}
           >
             Admin password
           </label>
-
           <input
             id="admin-password"
             type="password"
@@ -638,7 +555,6 @@ export const AdminPanel: React.FC = () => {
             className={input}
             placeholder="Enter your password"
           />
-
           {error && (
             <p
               role="alert"
@@ -647,14 +563,12 @@ export const AdminPanel: React.FC = () => {
               {error}
             </p>
           )}
-
           <button
             disabled={busy}
             className={`mt-5 w-full justify-center ${primaryButton}`}
           >
             {busy ? 'Signing in...' : 'Sign in'}
           </button>
-
           <a
             href="/"
             className="mt-5 block text-center text-sm text-[#164287]"
@@ -665,11 +579,9 @@ export const AdminPanel: React.FC = () => {
       </div>
     );
   }
-
   // ========================================
   // MAIN ADMIN PANEL
   // ========================================
-
   return (
     <div className="min-h-screen bg-[#f7f9fc] text-slate-800">
       <header className="border-b border-slate-200 bg-white">
@@ -678,12 +590,10 @@ export const AdminPanel: React.FC = () => {
             <p className="font-serif text-xl font-bold text-[#164287]">
               Vaidik Vidyapeeth
             </p>
-
             <p className="text-xs text-slate-500">
               Content management
             </p>
           </div>
-
           <div className="flex items-center gap-3">
             <a
               href="/"
@@ -692,7 +602,6 @@ export const AdminPanel: React.FC = () => {
               <ArrowLeft size={15} />
               Website
             </a>
-
             <button
               onClick={logout}
               className="flex items-center gap-2 rounded-lg border px-3 py-2 text-sm hover:bg-slate-50"
@@ -703,35 +612,28 @@ export const AdminPanel: React.FC = () => {
           </div>
         </div>
       </header>
-
       <main className="mx-auto max-w-6xl px-4 py-8">
         {/* PAGE TITLE */}
-
         <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
           <div>
             <h1 className="text-3xl font-bold tracking-tight">
               Manage Content
             </h1>
-
             <p className="mt-1 text-slate-500">
               Add, update, publish or remove school updates.
             </p>
           </div>
-
           {!showForm && (
             <button
               onClick={() => start()}
               className={primaryButton}
             >
               <Plus size={18} />
-
               Add {tab === 'events' ? 'Event' : 'Photo'}
             </button>
           )}
         </div>
-
         {/* MESSAGES */}
-
         {error && (
           <div
             role="alert"
@@ -740,7 +642,6 @@ export const AdminPanel: React.FC = () => {
             {error}
           </div>
         )}
-
         {message && (
           <div
             role="status"
@@ -749,9 +650,7 @@ export const AdminPanel: React.FC = () => {
             {message}
           </div>
         )}
-
         {/* EVENTS / GALLERY LIST */}
-
         {!showForm && (
           <>
             <div className="mb-6 grid grid-cols-2 gap-3 sm:max-w-md">
@@ -766,16 +665,13 @@ export const AdminPanel: React.FC = () => {
                   size={22}
                   className="text-[#164287]"
                 />
-
                 <span className="mt-2 block font-bold">
                   Events
                 </span>
-
                 <span className="text-sm text-slate-500">
                   {events.length} entries
                 </span>
               </button>
-
               <button
                 onClick={() => setTab('gallery')}
                 className={`rounded-xl border p-4 text-left ${tab === 'gallery'
@@ -787,24 +683,20 @@ export const AdminPanel: React.FC = () => {
                   size={22}
                   className="text-[#164287]"
                 />
-
                 <span className="mt-2 block font-bold">
                   Gallery
                 </span>
-
                 <span className="text-sm text-slate-500">
                   {photos.length} photos
                 </span>
               </button>
             </div>
-
             <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
               <div className="border-b p-5 font-bold">
                 {tab === 'events'
                   ? 'School Events'
                   : 'Photo Gallery'}
               </div>
-
               {items.length === 0 ? (
                 <p className="p-10 text-center text-slate-500">
                   Nothing here yet. Select Add{' '}
@@ -820,31 +712,31 @@ export const AdminPanel: React.FC = () => {
                       key={item.id}
                       className="flex flex-wrap items-center gap-4 p-4 sm:flex-nowrap"
                     >
-                      <img
-                        src={
-                          tab === 'events'
+                      {(tab === 'events'
+                        ? (item as EventItem).coverImage
+                        : (item as GalleryPhoto).image) ? (
+                        <img
+                          src={tab === 'events'
                             ? (item as EventItem).coverImage
-                            : (item as GalleryPhoto).image
-                        }
-                        alt=""
-                        className="h-20 w-24 rounded-lg bg-slate-100 object-cover"
-                      />
-
+                            : (item as GalleryPhoto).image}
+                          alt=""
+                          className="h-20 w-24 rounded-lg bg-slate-100 object-cover"
+                        />
+                      ) : (
+                        <div className="grid h-20 w-24 place-items-center rounded-lg bg-slate-100 text-xs text-slate-500">No image</div>
+                      )}
                       <div className="min-w-[150px] flex-1">
                         <div className="font-bold">
                           {item.title}
                         </div>
-
                         <div className="text-sm text-slate-500">
                           {item.category}
-
                           {tab === 'events'
                             ? ` • ${(
                               item as EventItem
                             ).date.slice(0, 10)}`
                             : ''}
                         </div>
-
                         <span
                           className={`mt-1 inline-flex rounded-full px-2 py-1 text-xs ${item.isPublished
                             ? 'bg-green-100 text-green-800'
@@ -856,7 +748,6 @@ export const AdminPanel: React.FC = () => {
                             : 'Draft'}
                         </span>
                       </div>
-
                       <div className="flex gap-2">
                         <button
                           onClick={() => start(item)}
@@ -866,7 +757,6 @@ export const AdminPanel: React.FC = () => {
                         >
                           <Edit2 size={18} />
                         </button>
-
                         <button
                           disabled={busy}
                           onClick={() => remove(item.id)}
@@ -884,9 +774,7 @@ export const AdminPanel: React.FC = () => {
             </div>
           </>
         )}
-
         {/* ADD / EDIT FORM */}
-
         {showForm && (
           <form
             onSubmit={save}
@@ -899,7 +787,6 @@ export const AdminPanel: React.FC = () => {
                   ? 'Event'
                   : 'Gallery Photos'}
               </h2>
-
               <button
                 type="button"
                 onClick={() => setShowForm(false)}
@@ -909,9 +796,7 @@ export const AdminPanel: React.FC = () => {
                 Cancel
               </button>
             </div>
-
             {/* EVENT FORM */}
-
             {tab === 'events' ? (
               <div className="space-y-5">
                 <div>
@@ -921,7 +806,6 @@ export const AdminPanel: React.FC = () => {
                   >
                     Event title *
                   </label>
-
                   <input
                     id="event-title"
                     required
@@ -937,7 +821,6 @@ export const AdminPanel: React.FC = () => {
                     placeholder="e.g. Annual Sports Day"
                   />
                 </div>
-
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div>
                     <label
@@ -946,7 +829,6 @@ export const AdminPanel: React.FC = () => {
                     >
                       Date *
                     </label>
-
                     <input
                       id="event-date"
                       type="date"
@@ -961,7 +843,6 @@ export const AdminPanel: React.FC = () => {
                       }
                     />
                   </div>
-
                   <div>
                     <label
                       htmlFor="event-category"
@@ -969,7 +850,6 @@ export const AdminPanel: React.FC = () => {
                     >
                       Category *
                     </label>
-
                     <select
                       id="event-category"
                       className={input}
@@ -988,7 +868,6 @@ export const AdminPanel: React.FC = () => {
                       ))}
                     </select>
                   </div>
-
                   <div>
                     <label
                       htmlFor="event-time"
@@ -996,7 +875,6 @@ export const AdminPanel: React.FC = () => {
                     >
                       Time
                     </label>
-
                     <input
                       id="event-time"
                       className={input}
@@ -1010,7 +888,6 @@ export const AdminPanel: React.FC = () => {
                       placeholder="10:00 AM"
                     />
                   </div>
-
                   <div>
                     <label
                       htmlFor="event-location"
@@ -1018,7 +895,6 @@ export const AdminPanel: React.FC = () => {
                     >
                       Location
                     </label>
-
                     <input
                       id="event-location"
                       className={input}
@@ -1033,7 +909,6 @@ export const AdminPanel: React.FC = () => {
                     />
                   </div>
                 </div>
-
                 <div>
                   <label
                     htmlFor="event-summary"
@@ -1041,7 +916,6 @@ export const AdminPanel: React.FC = () => {
                   >
                     Short summary *
                   </label>
-
                   <textarea
                     id="event-summary"
                     required
@@ -1056,7 +930,6 @@ export const AdminPanel: React.FC = () => {
                     }
                   />
                 </div>
-
                 <div>
                   <label
                     htmlFor="event-description"
@@ -1064,7 +937,6 @@ export const AdminPanel: React.FC = () => {
                   >
                     Full description *
                   </label>
-
                   <textarea
                     id="event-description"
                     required
@@ -1079,16 +951,13 @@ export const AdminPanel: React.FC = () => {
                     }
                   />
                 </div>
-
                 <UploadField
-                  label="Cover image"
-                  required
+                  label="Cover image (optional)"
                   uploading={uploading}
                   onFiles={(files) =>
                     uploadFiles(files, 'cover')
                   }
                 />
-
                 {event.coverImage && (
                   <div className="relative inline-block">
                     <img
@@ -1096,7 +965,6 @@ export const AdminPanel: React.FC = () => {
                       alt="Event cover preview"
                       className="h-36 w-60 rounded-lg object-cover"
                     />
-
                     <button
                       type="button"
                       disabled={uploading}
@@ -1113,7 +981,6 @@ export const AdminPanel: React.FC = () => {
                     </button>
                   </div>
                 )}
-
                 <UploadField
                   label="Other event photos"
                   multiple
@@ -1122,7 +989,6 @@ export const AdminPanel: React.FC = () => {
                     uploadFiles(files, 'eventGallery')
                   }
                 />
-
                 {event.gallery.length > 0 && (
                   <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
                     {event.gallery.map((url, index) => (
@@ -1135,7 +1001,6 @@ export const AdminPanel: React.FC = () => {
                           alt={`Event photo ${index + 1}`}
                           className="h-28 w-full rounded-lg object-cover"
                         />
-
                         <button
                           type="button"
                           disabled={uploading}
@@ -1158,8 +1023,6 @@ export const AdminPanel: React.FC = () => {
                 )}
               </div>
             ) : (
-              /* GALLERY FORM */
-
               <div className="space-y-5">
                 <div>
                   <label
@@ -1170,7 +1033,6 @@ export const AdminPanel: React.FC = () => {
                       ? 'Title (optional; applies to all selected photos)'
                       : 'Photo title *'}
                   </label>
-
                   <input
                     id="photo-title"
                     required={editing !== null}
@@ -1185,7 +1047,6 @@ export const AdminPanel: React.FC = () => {
                     placeholder="e.g. School Library (or leave blank to use filenames)"
                   />
                 </div>
-
                 <div>
                   <label
                     htmlFor="photo-category"
@@ -1193,7 +1054,6 @@ export const AdminPanel: React.FC = () => {
                   >
                     Category *
                   </label>
-
                   <select
                     id="photo-category"
                     className={input}
@@ -1212,9 +1072,7 @@ export const AdminPanel: React.FC = () => {
                     ))}
                   </select>
                 </div>
-
                 {/* MULTIPLE IMAGE UPLOAD */}
-
                 <UploadField
                   label={
                     editing === null
@@ -1228,16 +1086,13 @@ export const AdminPanel: React.FC = () => {
                     uploadFiles(files, 'photo')
                   }
                 />
-
                 {/* MULTIPLE PHOTO PREVIEW */}
-
                 {editing === null ? (
                   bulkPhotos.length > 0 && (
                     <div>
                       <p className="mb-3 text-sm font-semibold">
                         {bulkPhotos.length} photos ready to save
                       </p>
-
                       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
                         {bulkPhotos.map((selected, index) => (
                           <div
@@ -1249,14 +1104,12 @@ export const AdminPanel: React.FC = () => {
                               alt={selected.name}
                               className="h-32 w-full rounded-lg object-cover"
                             />
-
                             <p
                               className="mt-1 truncate text-xs text-slate-500"
                               title={selected.name}
                             >
                               {selected.name}
                             </p>
-
                             <button
                               type="button"
                               disabled={uploading || busy}
@@ -1285,7 +1138,6 @@ export const AdminPanel: React.FC = () => {
                         alt="Photo preview"
                         className="max-h-56 rounded-lg object-cover"
                       />
-
                       <button
                         type="button"
                         disabled={uploading}
@@ -1303,7 +1155,6 @@ export const AdminPanel: React.FC = () => {
                     </div>
                   )
                 )}
-
                 <div>
                   <label
                     htmlFor="photo-caption"
@@ -1311,7 +1162,6 @@ export const AdminPanel: React.FC = () => {
                   >
                     Caption
                   </label>
-
                   <textarea
                     id="photo-caption"
                     className={input}
@@ -1325,7 +1175,6 @@ export const AdminPanel: React.FC = () => {
                     }
                   />
                 </div>
-
                 <div>
                   <label
                     htmlFor="photo-order"
@@ -1333,7 +1182,6 @@ export const AdminPanel: React.FC = () => {
                   >
                     Display order (lower number first)
                   </label>
-
                   <input
                     id="photo-order"
                     type="number"
@@ -1351,9 +1199,7 @@ export const AdminPanel: React.FC = () => {
                 </div>
               </div>
             )}
-
             {/* PUBLISH CONTROL */}
-
             <label className="mt-6 flex cursor-pointer items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-4">
               <input
                 type="checkbox"
@@ -1375,17 +1221,14 @@ export const AdminPanel: React.FC = () => {
                     })
                 }
               />
-
               <span className="flex-1">
                 <span className="block font-semibold">
                   Publish on school website
                 </span>
-
                 <span className="text-xs text-slate-500">
                   Uncheck to save as a private draft
                 </span>
               </span>
-
               {(
                 tab === 'events'
                   ? event.isPublished
@@ -1396,14 +1239,11 @@ export const AdminPanel: React.FC = () => {
                 <EyeOff size={18} />
               )}
             </label>
-
             <p className="mt-4 text-xs text-slate-500">
               Images are uploaded to your school backend.
               Existing saved images will remain available.
             </p>
-
             {/* SAVE BUTTONS */}
-
             <div className="mt-7 flex gap-3">
               <button
                 type="submit"
@@ -1418,7 +1258,6 @@ export const AdminPanel: React.FC = () => {
                 ) : (
                   <Check size={18} />
                 )}
-
                 {busy
                   ? 'Saving...'
                   : uploading
@@ -1428,7 +1267,6 @@ export const AdminPanel: React.FC = () => {
                       ? `Save ${bulkPhotos.length} photos`
                       : 'Save changes'}
               </button>
-
               <button
                 type="button"
                 onClick={() => setShowForm(false)}

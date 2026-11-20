@@ -85,24 +85,62 @@ export const FacilitiesView: React.FC<FacilitiesViewProps> = ({ onNavigate, onOp
   return (
     <div className="w-full bg-white">
       {/* Header */}
-      <section className="bg-slate-900 text-white py-16 md:py-20 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#f4f8ff] via-white to-[#eaf2ff] border-b border-blue-100">
+
+        {/* Soft decorative background */}
+        <div className="absolute -top-24 -right-16 w-72 h-72 rounded-full bg-blue-100/40 blur-3xl pointer-events-none" />
+
+        <div className="absolute -bottom-24 -left-16 w-64 h-64 rounded-full bg-red-50/60 blur-3xl pointer-events-none" />
+
+        {/* Subtle grid pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.03] pointer-events-none"
+          style={{
+            backgroundImage:
+              'linear-gradient(#164287 1px, transparent 1px), linear-gradient(90deg, #164287 1px, transparent 1px)',
+            backgroundSize: '45px 45px',
+          }}
+        />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 mb-3">
-              <span className="w-5 h-[2px] bg-[#d91f26]" />
-              <span className="text-xs font-semibold uppercase tracking-wider text-red-400">
+
+            {/* Section label */}
+            <div className="inline-flex items-center gap-3 mb-4">
+              <span className="w-6 h-[2px] bg-[#d91f26]" />
+              <span className="text-xs font-bold uppercase tracking-[0.15em] text-[#164287]">
                 School Infrastructure
               </span>
             </div>
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight">
-              School Facilities & ECA
+
+            {/* Main heading */}
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight text-[#164287]">
+              School Facilities
+              <span className="block mt-1 text-[#c62828]">
+                & Extracurricular Activities
+              </span>
             </h1>
-            <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
-              Carefully planned learning spaces, student care services, and athletic grounds supporting intellectual development and extracurricular passions in Gothatar.
+
+            {/* Description */}
+            <p className="mt-5 text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl">
+              Carefully planned learning spaces, student care services,
+              and athletic grounds supporting intellectual development
+              and extracurricular passions in Gothatar.
             </p>
+
+            {/* Decorative accent */}
+            <div className="mt-6 flex items-center gap-2">
+              <span className="h-1 w-10 rounded-full bg-[#164287]" />
+              <span className="h-1 w-5 rounded-full bg-[#d91f26]" />
+            </div>
+
           </div>
         </div>
       </section>
+
+
 
       {/* Facilities Navigation Shortcuts */}
       <div className="bg-slate-50 border-b border-slate-200 sticky top-20 z-20 py-3 hidden md:block">
