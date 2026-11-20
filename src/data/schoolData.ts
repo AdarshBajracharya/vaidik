@@ -30,7 +30,7 @@ export const PRINCIPAL_INFO = {
   title: 'Principal',
   institution: 'Vaidik Vidyapeeth',
   location: 'Gothatar, Kathmandu',
-  photo: '/principal.jpg',
+  photo: '/principal-desk.jpeg',
   shortQuote:
     'At Vaidik Vidyapeeth, we believe that education extends far beyond textbooks and examinations. Our responsibility is to help students develop curiosity, confidence, discipline and compassion while providing them with a strong academic foundation. Through the partnership of teachers, students and parents, we aim to create an environment where every learner feels supported and inspired to succeed.',
   fullMessage: [
