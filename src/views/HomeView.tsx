@@ -1,15 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import { PageId, EventItem, GalleryPhoto } from '../types';
+
 import { SectionHeader } from '../components/SectionHeader';
-import { EventCard } from '../components/EventCard';
+
+
+
 import { GoogleMapSection } from '../components/GoogleMapSection';
+
 import {
+
   SCHOOL_INFO,
+
   QUICK_STATS,
+
   PRINCIPAL_INFO,
+
   CHAIRMAN_INFO,
+
   WHY_CHOOSE_ITEMS,
+
   FACILITIES_DATA,
+
 } from '../data/schoolData';
 
 import {
@@ -55,6 +67,10 @@ import {
   Palette,
 
   Dribbble,
+  CalendarDays,
+  CalendarCheck2,
+  History,
+  Sparkles,
 
 } from 'lucide-react';
 
@@ -71,6 +87,107 @@ interface HomeViewProps {
   onSelectPhoto: (photo: GalleryPhoto) => void;
 
 }
+
+// Compare date-only event values in Nepal time, regardless of visitor location.
+const nepalToday = () => {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Asia/Kathmandu',
+    year: 'numeric', month: '2-digit', day: '2-digit',
+  }).formatToParts(new Date());
+  const part = (name: string) => parts.find((p) => p.type === name)?.value || '';
+  return `${part('year')}-${part('month')}-${part('day')}`;
+};
+
+const eventDateKey = (date: string) => String(date || '').slice(0, 10);
+
+const eventDateLabel = (value: string) => {
+  const date = new Date(`${eventDateKey(value)}T12:00:00Z`);
+  return Number.isNaN(date.getTime())
+    ? 'Date to be announced'
+    : date.toLocaleDateString('en-US', {
+      timeZone: 'UTC',
+      day: 'numeric', month: 'short', year: 'numeric',
+    });
+};
+
+const eventEndKey = (event: EventItem) => {
+  const start = eventDateKey(event.date);
+  const match = (event.time || '').match(/(?:^|\|\s*)END:(\d{4}-\d{2}-\d{2})\s*$/i);
+  return match && match[1] >= start ? match[1] : start;
+};
+const eventStatus = (event: EventItem, today: string) => {
+  if (today < eventDateKey(event.date)) return 'Upcoming' as const;
+  if (today > eventEndKey(event)) return 'Past' as const;
+  return 'Ongoing' as const;
+};
+const eventDateRangeLabel = (event: EventItem) => {
+  const start = eventDateLabel(event.date);
+  const end = eventEndKey(event);
+  return end !== eventDateKey(event.date) ? `${start} – ${eventDateLabel(end)}` : start;
+};
+
+type HomeEventTab = 'upcoming' | 'ongoing' | 'past';
+
+const HomeEventCard: React.FC<{
+  event: EventItem;
+  status: 'Upcoming' | 'Ongoing' | 'Past';
+  onSelect: (event: EventItem) => void;
+}> = ({ event, status, onSelect }) => {
+  const [imageFailed, setImageFailed] = useState(false);
+  const hasImage = Boolean(event.coverImage?.trim()) && !imageFailed;
+  const CategoryIcon = event.category === 'Sports'
+    ? Trophy
+    : event.category === 'Academic'
+      ? BookOpen
+      : event.category === 'Cultural'
+        ? Palette
+        : Sparkles;
+
+  return (
+    <button
+      type="button"
+      onClick={() => onSelect(event)}
+      className="group flex h-full w-full flex-col overflow-hidden rounded-xl border border-slate-200 bg-white text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#164287] motion-reduce:transform-none"
+    >
+      <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#eff5fc]">
+        {hasImage ? (
+          <img
+            src={event.coverImage}
+            alt={event.title}
+            loading="lazy"
+            onError={() => setImageFailed(true)}
+            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 motion-reduce:transform-none"
+          />
+        ) : (
+          <div className="relative flex h-full flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-[#edf4ff] via-white to-[#dfeafd]">
+            <div className="absolute -right-12 -top-12 h-40 w-40 rounded-full border-[22px] border-blue-100/60" />
+            <div className="absolute -bottom-12 -left-12 h-36 w-36 rounded-full bg-blue-100/60 blur-xl" />
+            <div className="relative mb-3 flex h-16 w-16 items-center justify-center rounded-2xl border border-blue-100 bg-white shadow-sm transition-transform duration-500 group-hover:scale-110 motion-reduce:transform-none">
+              <CategoryIcon className="h-8 w-8 text-[#164287]" />
+            </div>
+            <span className="relative text-[10px] font-bold uppercase tracking-[0.18em] text-[#c62828]">Vaidik Vidyapeeth</span>
+            <span className="relative mt-2 font-serif text-lg font-bold text-[#164287]">{event.category} Event</span>
+          </div>
+        )}
+        <span className="absolute left-3 top-3 rounded-md bg-white/95 px-3 py-1.5 text-xs font-semibold text-[#164287] shadow-sm">
+          {eventDateRangeLabel(event)}
+        </span>
+        <span className="absolute right-3 top-3 rounded-full bg-white/95 px-3 py-1.5 text-[11px] font-semibold text-slate-600 shadow-sm">
+          {status === 'Past' ? 'Past Event' : status}
+        </span>
+      </div>
+      <div className="flex flex-1 flex-col p-5">
+        <span className="mb-2 text-xs font-semibold uppercase tracking-wide text-[#c62828]">{event.category}</span>
+        <h3 className="font-serif text-xl font-bold leading-snug text-slate-900 transition-colors group-hover:text-[#164287]">{event.title}</h3>
+        <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-slate-600">{event.summary}</p>
+        <div className="mt-5 flex items-center justify-between border-t border-slate-100 pt-4">
+          <span className="text-sm font-semibold text-[#164287]">View Event Details</span>
+          <ArrowRight className="h-4 w-4 text-[#164287] transition-transform group-hover:translate-x-1 motion-reduce:transform-none" />
+        </div>
+      </div>
+    </button>
+  );
+};
 
 export const HomeView: React.FC<HomeViewProps> = ({
 
@@ -102,7 +219,18 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
   };
 
-  const featuredEvents = events.slice(0, 3);
+  const [homeEventTab, setHomeEventTab] = useState<HomeEventTab>('upcoming');
+  const today = nepalToday();
+  const ongoing = [...events]
+    .filter((event) => eventStatus(event, today) === 'Ongoing')
+    .sort((a, b) => eventDateKey(a.date).localeCompare(eventDateKey(b.date)));
+  const upcoming = [...events]
+    .filter((event) => eventStatus(event, today) === 'Upcoming')
+    .sort((a, b) => eventDateKey(a.date).localeCompare(eventDateKey(b.date)));
+  const past = [...events]
+    .filter((event) => eventStatus(event, today) === 'Past')
+    .sort((a, b) => eventDateKey(b.date).localeCompare(eventDateKey(a.date)));
+  const featuredEvents = (homeEventTab === 'upcoming' ? upcoming : homeEventTab === 'ongoing' ? ongoing : past).slice(0, 3);
 
   const homepageGallery = photos.slice(0, 6);
 
@@ -391,7 +519,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
                 <div className="mt-3 text-center">
 
-                  <p className="font-serif font-bold text-blue-900 text-base">
+                  <p className="font-serif font-bold text-slate-900 text-base">
 
                     {PRINCIPAL_INFO.name}
 
@@ -453,7 +581,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
                 <div>
 
-                  <h4 className="font-serif font-bold text-blue-900 text-base">
+                  <h4 className="font-serif font-bold text-slate-900 text-base">
 
                     {PRINCIPAL_INFO.name}
 
@@ -565,7 +693,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
                 <div>
 
-                  <h4 className="font-serif font-bold text-blue-900 text-base">
+                  <h4 className="font-serif font-bold text-slate-900 text-base">
 
                     {CHAIRMAN_INFO.name}
 
@@ -623,7 +751,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
                 <div className="mt-3 text-center">
 
-                  <p className="font-serif font-bold text-blue-900 text-base">
+                  <p className="font-serif font-bold text-slate-900 text-base">
 
                     {CHAIRMAN_INFO.name}
 
@@ -701,7 +829,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
                 </div>
 
-                <h3 className="font-serif text-lg font-bold text-blue-900 leading-snug">
+                <h3 className="font-serif text-lg font-bold text-slate-900 leading-snug">
 
                   {item.title}
 
@@ -941,7 +1069,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
                   <div className="space-y-1.5">
 
-                    <div className="flex items-center gap-2 text-blue-900 font-semibold text-sm">
+                    <div className="flex items-center gap-2 text-slate-900 font-semibold text-sm">
 
                       <Library className="w-4 h-4 text-[#164287]" />
 
@@ -961,7 +1089,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
                   <div className="space-y-1.5">
 
-                    <div className="flex items-center gap-2 text-blue-900 font-semibold text-sm">
+                    <div className="flex items-center gap-2 text-slate-900 font-semibold text-sm">
 
                       <Monitor className="w-4 h-4 text-[#164287]" />
 
@@ -981,7 +1109,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
                   <div className="space-y-1.5">
 
-                    <div className="flex items-center gap-2 text-blue-900 font-semibold text-sm">
+                    <div className="flex items-center gap-2 text-slate-900 font-semibold text-sm">
 
                       <HeartPulse className="w-4 h-4 text-[#d91f26]" />
 
@@ -1001,7 +1129,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
                   <div className="space-y-1.5">
 
-                    <div className="flex items-center gap-2 text-blue-900 font-semibold text-sm">
+                    <div className="flex items-center gap-2 text-slate-900 font-semibold text-sm">
 
                       <Bus className="w-4 h-4 text-[#164287]" />
 
@@ -1021,7 +1149,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
                   <div className="space-y-1.5">
 
-                    <div className="flex items-center gap-2 text-blue-900 font-semibold text-sm">
+                    <div className="flex items-center gap-2 text-slate-900 font-semibold text-sm">
 
                       <Clock className="w-4 h-4 text-[#164287]" />
 
@@ -1041,7 +1169,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
                   <div className="space-y-1.5">
 
-                    <div className="flex items-center gap-2 text-blue-900 font-semibold text-sm">
+                    <div className="flex items-center gap-2 text-slate-900 font-semibold text-sm">
 
                       <Baby className="w-4 h-4 text-[#d91f26]" />
 
@@ -1077,7 +1205,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
                   <div className="space-y-1.5">
 
-                    <div className="flex items-center gap-2 text-blue-900 font-semibold text-sm">
+                    <div className="flex items-center gap-2 text-slate-900 font-semibold text-sm">
 
                       <Activity className="w-4 h-4 text-[#d91f26]" />
 
@@ -1097,7 +1225,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
                   <div className="space-y-1.5">
 
-                    <div className="flex items-center gap-2 text-blue-900 font-semibold text-sm">
+                    <div className="flex items-center gap-2 text-slate-900 font-semibold text-sm">
 
                       <Music className="w-4 h-4 text-[#164287]" />
 
@@ -1117,7 +1245,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
                   <div className="space-y-1.5">
 
-                    <div className="flex items-center gap-2 text-blue-900 font-semibold text-sm">
+                    <div className="flex items-center gap-2 text-slate-900 font-semibold text-sm">
 
                       <Palette className="w-4 h-4 text-[#164287]" />
 
@@ -1137,7 +1265,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
                   <div className="space-y-1.5">
 
-                    <div className="flex items-center gap-2 text-blue-900 font-semibold text-sm">
+                    <div className="flex items-center gap-2 text-slate-900 font-semibold text-sm">
 
                       <Dribbble className="w-4 h-4 text-[#164287]" />
 
@@ -1157,7 +1285,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
                   <div className="space-y-1.5">
 
-                    <div className="flex items-center gap-2 text-blue-900 font-semibold text-sm">
+                    <div className="flex items-center gap-2 text-slate-900 font-semibold text-sm">
 
                       <Trophy className="w-4 h-4 text-[#164287]" />
 
@@ -1177,7 +1305,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
                   <div className="space-y-1.5">
 
-                    <div className="flex items-center gap-2 text-blue-900 font-semibold text-sm">
+                    <div className="flex items-center gap-2 text-slate-900 font-semibold text-sm">
 
                       <Music className="w-4 h-4 text-[#164287]" />
 
@@ -1261,7 +1389,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
                 <div className="p-4 bg-white border border-slate-200 rounded">
 
-                  <h4 className="font-semibold text-sm text-blue-900 mb-1 flex items-center gap-1.5">
+                  <h4 className="font-semibold text-sm text-slate-900 mb-1 flex items-center gap-1.5">
 
                     <CheckCircle2 className="w-4 h-4 text-[#164287]" />
 
@@ -1281,7 +1409,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
                 <div className="p-4 bg-white border border-slate-200 rounded">
 
-                  <h4 className="font-semibold text-sm text-blue-900 mb-1 flex items-center gap-1.5">
+                  <h4 className="font-semibold text-sm text-slate-900 mb-1 flex items-center gap-1.5">
 
                     <ShieldCheck className="w-4 h-4 text-[#d91f26]" />
 
@@ -1417,23 +1545,49 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-            {featuredEvents.map((event) => (
-
-              <EventCard
-
-                key={event.id}
-
-                event={event}
-
-                onReadMore={onSelectEvent}
-
-              />
-
-            ))}
-
+          <div className="mb-7 flex flex-wrap items-center gap-2" role="group" aria-label="Filter homepage events">
+            <button type="button" onClick={() => setHomeEventTab('upcoming')} aria-pressed={homeEventTab === 'upcoming'}
+              className={`inline-flex items-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-semibold transition-colors ${homeEventTab === 'upcoming' ? 'border-[#164287] bg-[#164287] text-white' : 'border-slate-200 bg-white text-slate-700 hover:bg-blue-50'}`}>
+              <CalendarCheck2 className="h-4 w-4" /> Upcoming <span className="text-xs opacity-75">({upcoming.length})</span>
+            </button>
+            <button type="button" onClick={() => setHomeEventTab('ongoing')} aria-pressed={homeEventTab === 'ongoing'}
+              className={`inline-flex items-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-semibold transition-colors ${homeEventTab === 'ongoing' ? 'border-[#164287] bg-[#164287] text-white' : 'border-slate-200 bg-white text-slate-700 hover:bg-blue-50'}`}>
+              <CalendarDays className="h-4 w-4" /> Ongoing <span className="text-xs opacity-75">({ongoing.length})</span>
+            </button>
+            <button type="button" onClick={() => setHomeEventTab('past')} aria-pressed={homeEventTab === 'past'}
+              className={`inline-flex items-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-semibold transition-colors ${homeEventTab === 'past' ? 'border-[#164287] bg-[#164287] text-white' : 'border-slate-200 bg-white text-slate-700 hover:bg-blue-50'}`}>
+              <History className="h-4 w-4" /> Past Events <span className="text-xs opacity-75">({past.length})</span>
+            </button>
           </div>
+
+          {featuredEvents.length > 0 ? (
+            <div className="grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-3">
+              {featuredEvents.map((event) => (
+                <HomeEventCard
+                  key={event.id}
+                  event={event}
+                  status={eventStatus(event, today)}
+                  onSelect={onSelectEvent}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="rounded-xl border border-blue-100 bg-[#f7faff] px-6 py-12 text-center">
+              <CalendarDays className="mx-auto h-9 w-9 text-[#164287]" />
+              <h3 className="mt-3 font-serif text-xl font-bold text-[#164287]">
+                {homeEventTab === 'upcoming' ? 'No Upcoming Events' : homeEventTab === 'ongoing' ? 'No Ongoing Events' : 'No Past Events Yet'}
+              </h3>
+              <p className="mt-2 text-sm text-slate-600">
+                {homeEventTab === 'upcoming'
+                  ? 'New school activities will be announced here.'
+                  : homeEventTab === 'ongoing' ? 'There are no activities taking place today.'
+                    : 'Previous school events will appear here.'}
+              </p>
+              <button type="button" onClick={() => onNavigate('events')} className="mt-4 text-sm font-semibold text-[#164287] hover:underline">
+                Explore All School Events
+              </button>
+            </div>
+          )}
 
         </div>
 
@@ -1513,7 +1667,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
                 />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 text-white">
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 text-white">
 
                   <span className="text-[10px] uppercase font-semibold text-red-300 tracking-wider">
 
@@ -1579,7 +1733,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
                   <div>
 
-                    <strong className="block text-blue-900 font-serif">
+                    <strong className="block text-slate-900 font-serif">
 
                       Vaidik Vidyapeeth
 
@@ -1603,7 +1757,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
                   <div>
 
-                    <strong className="block text-blue-900">
+                    <strong className="block text-slate-900">
 
                       Telephone & Mobile
 
@@ -1627,7 +1781,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
                   <div>
 
-                    <strong className="block text-blue-900">
+                    <strong className="block text-slate-900">
 
                       Email Address
 
@@ -1645,7 +1799,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
                   <div>
 
-                    <strong className="block text-blue-900">
+                    <strong className="block text-slate-900">
 
                       School Office Hours
 
