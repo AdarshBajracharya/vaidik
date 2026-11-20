@@ -298,18 +298,26 @@ export const AdminPanel: React.FC = () => {
     setError('');
 
     try {
+      // Step 1: Authenticate using password
       await schoolApi.login(password);
 
+      // Step 2: Verify the server recognizes the cookie
+      await schoolApi.session();
+
+      // Step 3: Load protected admin data
+      await load();
+
+      // Step 4: Show the admin panel only after success
       setSignedIn(true);
       setPassword('');
-
-      await load();
     } catch (err) {
+      setSignedIn(false);
       showError(err);
     } finally {
       setBusy(false);
     }
   };
+
 
   // ========================================
   // LOGOUT
@@ -750,8 +758,8 @@ export const AdminPanel: React.FC = () => {
               <button
                 onClick={() => setTab('events')}
                 className={`rounded-xl border p-4 text-left ${tab === 'events'
-                    ? 'border-[#164287] bg-blue-50'
-                    : 'border-slate-200 bg-white'
+                  ? 'border-[#164287] bg-blue-50'
+                  : 'border-slate-200 bg-white'
                   }`}
               >
                 <CalendarDays
@@ -771,8 +779,8 @@ export const AdminPanel: React.FC = () => {
               <button
                 onClick={() => setTab('gallery')}
                 className={`rounded-xl border p-4 text-left ${tab === 'gallery'
-                    ? 'border-[#164287] bg-blue-50'
-                    : 'border-slate-200 bg-white'
+                  ? 'border-[#164287] bg-blue-50'
+                  : 'border-slate-200 bg-white'
                   }`}
               >
                 <Images
@@ -839,8 +847,8 @@ export const AdminPanel: React.FC = () => {
 
                         <span
                           className={`mt-1 inline-flex rounded-full px-2 py-1 text-xs ${item.isPublished
-                              ? 'bg-green-100 text-green-800'
-                              : 'bg-amber-100 text-amber-800'
+                            ? 'bg-green-100 text-green-800'
+                            : 'bg-amber-100 text-amber-800'
                             }`}
                         >
                           {item.isPublished
