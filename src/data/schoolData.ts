@@ -155,7 +155,7 @@ export const FACILITIES_DATA: FacilityItem[] = [
   // Extracurricular Activities
   {
     id: 'taekwondo',
-    name: 'Taekwondo & Martial Arts',
+    name: 'Taekwondo',
     category: 'Extracurricular Activities',
     description:
       'Regular martial arts instruction led by certified black-belt instructors, instilling mental discipline, self-defense awareness, physical endurance, and respect.',

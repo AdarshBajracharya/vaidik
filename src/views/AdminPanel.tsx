@@ -36,15 +36,15 @@ import { schoolApi, type Managed } from '../lib/api';
 
 import type { EventItem, GalleryPhoto } from '../types';
 
-type Kind= 'events' | 'gallery';
+type Kind = 'events' | 'gallery';
 
-type EditorId= string | number | null;
+type EditorId = string | number | null;
 
-type UploadedPhoto= {
+type UploadedPhoto = {
 
- url: string;
+  url: string;
 
- name: string;
+  name: string;
 
 };
 
@@ -395,7 +395,7 @@ const UploadField: React.FC<UploadFieldProps> = ({
 
 
 
-export const AdminPanel: React.FC= () => {
+export const AdminPanel: React.FC = () => {
 
   const [signedIn, setSignedIn] = useState(false);
 
@@ -442,7 +442,7 @@ export const AdminPanel: React.FC= () => {
 
 
 
-const showError = (err: unknown) => {
+  const showError = (err: unknown) => {
 
     setError(
 
@@ -460,7 +460,7 @@ const showError = (err: unknown) => {
 
 
 
-const load = async () => {
+  const load = async () => {
 
     const [loadedEvents, loadedPhotos] =
 
@@ -508,39 +508,32 @@ const load = async () => {
 
 
 
-const login = async (e: React.FormEvent) => {
-
+  const login = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (busy || !password.trim()) return;
 
     setBusy(true);
-
     setError('');
 
     try {
-
-
-
-
-
+      // Authenticate with the existing backend.
+      await schoolApi.login(password);
+      // Confirm the authentication cookie is recognized.
+      await schoolApi.session();
+      // Fetch protected content before showing the admin dashboard.
+      await load();
+      setSignedIn(true);
       setPassword('');
-
     } catch (err) {
-
       setSignedIn(false);
-
       showError(err);
-
+      // Retain the entered password on failure for easier diagnosis.
     } finally {
-
       setBusy(false);
-
     }
-
   };
 
-
-
-const logout = async () => {
+  const logout = async () => {
 
     try {
 
@@ -560,7 +553,7 @@ const logout = async () => {
 
 
 
-const start = (
+  const start = (
 
     item?: Managed<EventItem> | Managed<GalleryPhoto>
 
@@ -663,7 +656,7 @@ const start = (
 
 
 
-const uploadFiles = async (
+  const uploadFiles = async (
 
     files: File[],
 
@@ -751,7 +744,7 @@ const uploadFiles = async (
 
 
 
-const save = async (e: React.FormEvent) => {
+  const save = async (e: React.FormEvent) => {
 
     e.preventDefault();
 
@@ -923,7 +916,7 @@ const save = async (e: React.FormEvent) => {
 
 
 
-const remove = async (
+  const remove = async (
 
     id: string | number
 

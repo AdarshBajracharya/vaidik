@@ -258,8 +258,8 @@ export const HomeView: React.FC<HomeViewProps> = ({
               </div>
 
               <h1 className="font-serif text-[2.6rem] leading-[1.15] sm:text-5xl xl:text-[3.45rem] font-bold tracking-tight text-[#173d76]">
-                Learning Today.
-                <span className="mt-2 block text-[#b92b35]">Leading Tomorrow.</span>
+                Learning With Values.
+                <span className="mt-2 block text-[#b92b35]">Leading With Character.</span>
               </h1>
 
               <div className="h-1 w-14 rounded-full bg-[#c52731]" />
@@ -483,150 +483,6 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
       {/*==================================================
 
-          4. MESSAGE FROM THE PRINCIPAL
-
-          ================================================== */}
-
-      <section
-
-        className="py-20 bg-slate-50 border-y border-slate-200"
-
-        id="principal-section"
-
-      >
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-
-            <div className="lg:col-span-5 flex justify-center">
-
-              <div className="relative max-w-sm w-full">
-
-                <div className="aspect-4/5 rounded-sm overflow-hidden border border-slate-200 shadow-sm bg-slate-200">
-
-                  <img
-
-                    src={PRINCIPAL_INFO.photo}
-
-                    alt={`${PRINCIPAL_INFO.name} - Principal of Vaidik Vidyapeeth`}
-
-                    className="w-full h-full object-cover object-top"
-
-                  />
-
-                </div>
-
-                <div className="mt-3 text-center">
-
-                  <p className="font-serif font-bold text-slate-900 text-base">
-
-                    {PRINCIPAL_INFO.name}
-
-                  </p>
-
-                  <p className="text-xs text-slate-600">
-
-                    {PRINCIPAL_INFO.title}, {PRINCIPAL_INFO.institution}
-
-                  </p>
-
-                  <p className="text-xs text-[#d91f26] font-medium">
-
-                    {PRINCIPAL_INFO.location}, Nepal
-
-                  </p>
-
-                </div>
-
-              </div>
-
-            </div>
-
-            <div className="lg:col-span-7 space-y-5">
-
-              <div className="inline-flex items-center gap-2">
-
-                <span className="w-5 h-[2px] bg-[#d91f26]" />
-
-                <span className="text-xs font-semibold uppercase tracking-wider text-[#d91f26]">
-
-                  Leadership
-
-                </span>
-
-              </div>
-
-              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#164287] leading-tight">
-
-                Message from the Principal
-
-              </h2>
-
-              <p className="text-slate-600 text-sm leading-relaxed">
-
-                We believe that schools must be places of joy, purposeful
-
-                inquiry, and moral grounding. When parents and teachers
-
-                collaborate with shared values, children develop the
-
-                self-belief required to navigate an evolving world with
-
-                dignity and intellect.
-
-              </p>
-
-              <div className="pt-3 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
-
-                <div>
-
-                  <h4 className="font-serif font-bold text-slate-900 text-base">
-
-                    {PRINCIPAL_INFO.name}
-
-                  </h4>
-
-                  <p className="text-xs text-slate-500">
-
-                    Principal, Vaidik Vidyapeeth
-
-                  </p>
-
-                </div>
-
-                <span className="hidden sm:block text-slate-300">
-
-                  |
-
-                </span>
-
-                <button
-
-                  onClick={() => onNavigate('principal')}
-
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#164287] hover:text-[#d91f26] transition-colors cursor-pointer group"
-
-                >
-
-                  <span>Read Full Message</span>
-
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-
-                </button>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-      {/*==================================================
-
           5. MESSAGE FROM THE CHAIRMAN
 
           ================================================== */}
@@ -780,6 +636,152 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </div>
 
       </section>
+
+      {/*==================================================
+
+          4. MESSAGE FROM THE PRINCIPAL
+
+          ================================================== */}
+
+      <section
+
+        className="py-20 bg-slate-50 border-y border-slate-200"
+
+        id="principal-section"
+
+      >
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+
+            <div className="lg:col-span-5 flex justify-center">
+
+              <div className="relative max-w-sm w-full">
+
+                <div className="aspect-4/5 rounded-sm overflow-hidden border border-slate-200 shadow-sm bg-slate-200">
+
+                  <img
+
+                    src={PRINCIPAL_INFO.photo}
+
+                    alt={`${PRINCIPAL_INFO.name} - Principal of Vaidik Vidyapeeth`}
+
+                    className="w-full h-full object-cover object-top"
+
+                  />
+
+                </div>
+
+                <div className="mt-3 text-center">
+
+                  <p className="font-serif font-bold text-slate-900 text-base">
+
+                    {PRINCIPAL_INFO.name}
+
+                  </p>
+
+                  <p className="text-xs text-slate-600">
+
+                    {PRINCIPAL_INFO.title}, {PRINCIPAL_INFO.institution}
+
+                  </p>
+
+                  <p className="text-xs text-[#d91f26] font-medium">
+
+                    {PRINCIPAL_INFO.location}, Nepal
+
+                  </p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <div className="lg:col-span-7 space-y-5">
+
+              <div className="inline-flex items-center gap-2">
+
+                <span className="w-5 h-[2px] bg-[#d91f26]" />
+
+                <span className="text-xs font-semibold uppercase tracking-wider text-[#d91f26]">
+
+                  Leadership
+
+                </span>
+
+              </div>
+
+              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#164287] leading-tight">
+
+                Message from the Principal
+
+              </h2>
+
+              <p className="text-slate-600 text-sm leading-relaxed">
+
+                We believe that schools must be places of joy, purposeful
+
+                inquiry, and moral grounding. When parents and teachers
+
+                collaborate with shared values, children develop the
+
+                self-belief required to navigate an evolving world with
+
+                dignity and intellect.
+
+              </p>
+
+              <div className="pt-3 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
+
+                <div>
+
+                  <h4 className="font-serif font-bold text-slate-900 text-base">
+
+                    {PRINCIPAL_INFO.name}
+
+                  </h4>
+
+                  <p className="text-xs text-slate-500">
+
+                    Principal, Vaidik Vidyapeeth
+
+                  </p>
+
+                </div>
+
+                <span className="hidden sm:block text-slate-300">
+
+                  |
+
+                </span>
+
+                <button
+
+                  onClick={() => onNavigate('principal')}
+
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#164287] hover:text-[#d91f26] transition-colors cursor-pointer group"
+
+                >
+
+                  <span>Read Full Message</span>
+
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
 
       {/*==================================================
 
